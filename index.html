@@ -4,53 +4,60 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/output.css" />
-    <title>Studio Kaffee</title>
+    <title>Studio kaffee</title>
   </head>
-  <body class="bg-[#FEFEFE]">
-    <header class="border-b border-[#eee5dc] bg-[#FEFEFE]">
+
+  <body class="bg-kaffee-cream font-sans text-kaffee-brown">
+    <header class="border-b border-kaffee-caramel/25 bg-kaffee-cream">
       <div class="flex h-20 w-full items-center justify-between px-20 py-12">
         <!-- Logo -->
-        <a href="#" class="text-[#2b1a10]">
-          <div class="flex flex-col leading-[0.8]">
-            <span
-              class="font-['Cormorant_Garamond'] text-[20px] font-medium tracking-[-0.02em]"
-            >
+        <a href="#" class="text-kaffee-brown">
+          <div class="flex flex-col leading-none">
+            <span class="font-sans text-[16px] font-normal lowercase tracking-[0.02em]">
               studio
             </span>
-            <span
-              class="font-['Cormorant_Garamond'] text-[38px] font-medium tracking-[-0.04em]"
-            >
+
+            <span class="font-logo text-[42px] font-normal leading-[0.75] tracking-[-0.06em]">
               kaffee
             </span>
           </div>
         </a>
 
         <!-- Menu + Botão -->
-        <div class="hidden items-center gap-42 md:flex">
+        <div class="hidden items-center gap-[168px] md:flex">
           <nav>
             <ul
-              class="flex items-center gap-12 font-['Montserrat'] text-[14px] font-semibold uppercase tracking-[0.22em] text-[#2b1a10]"
+              class="flex items-center gap-12 font-sans text-[13px] font-semibold uppercase tracking-[0.22em] text-kaffee-brown"
             >
               <li>
-                <a href="#" class="transition hover:text-[#7a4a28]">Agenda</a>
+                <a href="#" class="transition hover:text-kaffee-caramel">
+                  Agenda
+                </a>
               </li>
+
               <li>
-                <a href="#" class="transition hover:text-[#7a4a28]">Estúdio</a>
+                <a href="#" class="transition hover:text-kaffee-caramel">
+                  Estúdio
+                </a>
               </li>
+
               <li>
-                <a href="#" class="transition hover:text-[#7a4a28]"
-                  >Sobre mim</a
-                >
+                <a href="#" class="transition hover:text-kaffee-caramel">
+                  Sobre mim
+                </a>
               </li>
+
               <li>
-                <a href="#" class="transition hover:text-[#7a4a28]">FAQ</a>
+                <a href="#" class="transition hover:text-kaffee-caramel">
+                  FAQ
+                </a>
               </li>
             </ul>
           </nav>
 
           <a
-            href="#"
-            class="flex items-center gap-2 rounded-[3px] bg-[#4b240d] px-5 py-3 font-['Montserrat'] text-[12px] font-bold uppercase tracking-[0.12em] text-white shadow-md transition hover:bg-[#351807]"
+            href="#agenda"
+            class="flex items-center gap-2 rounded-[3px] bg-kaffee-brown px-5 py-3 font-sans text-[12px] font-bold uppercase tracking-[0.12em] text-kaffee-cream shadow-md transition hover:bg-kaffee-earth"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -72,57 +79,61 @@
         </div>
       </div>
     </header>
+
     <main>
       <!-- Hero -->
       <section
-        class="relative flex min-h-[620px] items-center justify-center overflow-hidden bg-[#f6efe7] bg-cover bg-center"
+        class="relative flex min-h-[620px] items-center justify-center overflow-hidden bg-kaffee-cream bg-cover bg-center"
         style="
           background-image:
-            linear-gradient(rgba(43, 26, 16, 0.32), rgba(43, 26, 16, 0.32)),
-            url(&quot;./assets/hero-kaffee.png&quot;);
+            linear-gradient(rgba(109, 57, 20, 0.38), rgba(109, 57, 20, 0.38)),
+            url('./assets/hero-kaffee.png');
         "
       >
-        <div class="relative z-10 text-center text-white">
-          <p
-            class="mb-4 font-['Montserrat'] text-[11px] font-medium uppercase tracking-[0.45em] opacity-90"
-          >
+        <div class="relative z-10 text-center text-kaffee-cream">
+          <p class="mb-2 font-sans text-[17px] font-normal lowercase tracking-[0.04em]">
             studio
           </p>
 
           <h1
-            class="font-['Montserrat'] text-[42px] font-light uppercase leading-none tracking-[0.28em] md:text-[56px]"
+            class="font-logo text-[84px] font-normal leading-none tracking-[-0.06em] md:text-[118px]"
           >
-            Kaffee
+            kaffee
           </h1>
         </div>
       </section>
 
       <!-- Sobre -->
-      <section class="bg-[#fbf8f3] px-6 py-14 text-center">
+      <section class="bg-kaffee-cream px-6 py-16 text-center">
         <p
-          class="mb-4 font-['Montserrat'] text-[10px] font-semibold uppercase tracking-[0.28em] text-[#2b1a10]"
+          class="mb-4 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-kaffee-brown"
         >
-          O Studio Kaffee
+          O Studio kaffee
         </p>
 
         <h2
-          class="font-['Cormorant_Garamond'] text-[42px] font-medium tracking-[-0.03em] text-[#2b1a10]"
+          class="font-logo text-[44px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[52px]"
         >
           Inspirado pelo café.<br />
           Feito para pessoas.
         </h2>
 
-        <div class="mx-auto mt-5 h-px w-12 bg-[#6f4a35]"></div>
+        <div class="mx-auto mt-5 h-px w-12 bg-kaffee-caramel"></div>
 
         <p
-          class="mx-auto mt-6 max-w-130 font-['Montserrat'] text-[14px] leading-[1.8] text-[#3f2a1d]"
+          class="mx-auto mt-6 max-w-[520px] font-sans text-[14px] leading-[1.8] text-kaffee-earth"
         >
-          Mais do que um estúdio, o Kaffee é um espaço criado para acelerar,
+          Mais do que um estúdio, o kaffee é um espaço criado para acelerar,
           acolher e proporcionar uma experiência completa. Cores, cheiros e
           sensações que despertam presença e conexão.
         </p>
       </section>
     </main>
-    <footer></footer>
+
+    <footer class="bg-kaffee-brown px-6 py-8 text-center text-kaffee-cream">
+      <p class="font-sans text-[12px] uppercase tracking-[0.22em]">
+        Studio kaffee
+      </p>
+    </footer>
   </body>
 </html>
