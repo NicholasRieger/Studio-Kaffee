@@ -8,49 +8,54 @@
   </head>
 
   <body class="bg-kaffee-cream font-sans text-kaffee-brown">
-    <header class="border-b border-kaffee-caramel/25 bg-kaffee-cream">
-      <div class="flex h-20 w-full items-center justify-between px-20 py-12">
+    <header
+      class="relative z-50 border-b border-kaffee-caramel/25 bg-kaffee-cream"
+    >
+      <div
+        class="flex h-20 w-full items-center justify-between px-6 py-6 md:px-20 md:py-12"
+      >
         <!-- Logo -->
-        <a href="#" class="text-kaffee-brown">
+        <a href="#" class="relative z-50 text-kaffee-brown">
           <div class="flex flex-col leading-none">
-            <span class="font-sans text-[16px] font-normal lowercase tracking-[0.02em]">
+            <span
+              class="font-sans text-[16px] font-normal lowercase tracking-[0.02em]"
+            >
               studio
             </span>
 
-            <span class="font-logo text-[42px] font-normal leading-[0.75] tracking-[-0.06em]">
+            <span
+              class="font-logo text-[42px] font-normal leading-[0.75] tracking-[-0.06em]"
+            >
               kaffee
             </span>
           </div>
         </a>
 
-        <!-- Menu + Botão -->
+        <!-- Menu Desktop -->
         <div class="hidden items-center gap-[168px] md:flex">
           <nav>
             <ul
               class="flex items-center gap-12 font-sans text-[13px] font-semibold uppercase tracking-[0.22em] text-kaffee-brown"
             >
               <li>
-                <a href="#" class="transition hover:text-kaffee-caramel">
-                  Agenda
-                </a>
+                <a href="#agenda" class="transition hover:text-kaffee-caramel"
+                  >Agenda</a
+                >
               </li>
-
               <li>
-                <a href="#" class="transition hover:text-kaffee-caramel">
-                  Estúdio
-                </a>
+                <a href="#estudio" class="transition hover:text-kaffee-caramel"
+                  >Estúdio</a
+                >
               </li>
-
               <li>
-                <a href="#" class="transition hover:text-kaffee-caramel">
-                  Sobre mim
-                </a>
+                <a href="#sobre" class="transition hover:text-kaffee-caramel"
+                  >Sobre mim</a
+                >
               </li>
-
               <li>
-                <a href="#" class="transition hover:text-kaffee-caramel">
-                  FAQ
-                </a>
+                <a href="#faq" class="transition hover:text-kaffee-caramel"
+                  >FAQ</a
+                >
               </li>
             </ul>
           </nav>
@@ -77,21 +82,91 @@
             Agendar Ensaio
           </a>
         </div>
+
+        <!-- Botão Mobile -->
+        <button
+          id="menuButton"
+          class="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+          type="button"
+          aria-label="Abrir menu"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+        >
+          <span
+            class="menu-line h-px w-7 bg-kaffee-brown transition-all duration-300"
+          ></span>
+          <span
+            class="menu-line h-px w-7 bg-kaffee-brown transition-all duration-300"
+          ></span>
+          <span
+            class="menu-line h-px w-7 bg-kaffee-brown transition-all duration-300"
+          ></span>
+        </button>
+      </div>
+
+      <!-- Menu Mobile -->
+      <div
+        id="mobileMenu"
+        class="pointer-events-none fixed inset-0 z-40 flex translate-y-[-12px] flex-col justify-center bg-kaffee-cream/95 px-8 opacity-0 backdrop-blur-md transition-all duration-300 md:hidden"
+      >
+        <nav>
+          <ul
+            class="space-y-8 text-center font-sans text-[15px] font-medium uppercase tracking-[0.28em] text-kaffee-brown"
+          >
+            <li>
+              <a
+                href="#agenda"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+                >Agenda</a
+              >
+            </li>
+            <li>
+              <a
+                href="#estudio"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+                >Estúdio</a
+              >
+            </li>
+            <li>
+              <a
+                href="#sobre"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+                >Sobre mim</a
+              >
+            </li>
+            <li>
+              <a
+                href="#faq"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+                >FAQ</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <a
+          href="#agenda"
+          class="mobile-link mx-auto mt-12 inline-flex items-center justify-center rounded-[3px] bg-kaffee-brown px-6 py-4 font-sans text-[12px] font-bold uppercase tracking-[0.16em] text-kaffee-cream shadow-md transition hover:bg-kaffee-earth"
+        >
+          Agendar Ensaio
+        </a>
       </div>
     </header>
 
     <main>
       <!-- Hero -->
       <section
-        class="relative flex min-h-[620px] items-center justify-center overflow-hidden bg-kaffee-cream bg-cover bg-center"
+        class="relative flex min-h-155 items-center justify-center overflow-hidden bg-kaffee-cream bg-cover bg-center"
         style="
           background-image:
             linear-gradient(rgba(109, 57, 20, 0.38), rgba(109, 57, 20, 0.38)),
-            url('./assets/hero-kaffee.png');
+            url(&quot;./assets/hero-kaffee.png&quot;);
         "
       >
         <div class="relative z-10 text-center text-kaffee-cream">
-          <p class="mb-2 font-sans text-[17px] font-normal lowercase tracking-[0.04em]">
+          <p
+            class="mb-2 font-sans text-[17px] font-normal lowercase tracking-[0.04em]"
+          >
             studio
           </p>
 
@@ -121,7 +196,7 @@
         <div class="mx-auto mt-5 h-px w-12 bg-kaffee-caramel"></div>
 
         <p
-          class="mx-auto mt-6 max-w-[520px] font-sans text-[14px] leading-[1.8] text-kaffee-earth"
+          class="mx-auto mt-6 max-w-130 font-sans text-[14px] leading-[1.8] text-kaffee-earth"
         >
           Mais do que um estúdio, o kaffee é um espaço criado para acelerar,
           acolher e proporcionar uma experiência completa. Cores, cheiros e
@@ -136,4 +211,5 @@
       </p>
     </footer>
   </body>
+  <script src="script.js"></script>
 </html>
