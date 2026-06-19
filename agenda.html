@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/output.css" />
+    <title>Agenda | Studio Kaffee</title>
+
+    <link
+      rel="shortcut icon"
+      href="ChatGPT_Image_15_de_jun._de_2026__20_12_13-removebg-preview.png"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+
+  <body class="bg-kaffee-cream font-sans text-kaffee-brown">
+    <!-- Header -->
+    <header
+      class="relative z-50 border-b border-kaffee-caramel/25 bg-kaffee-cream"
+    >
+      <div
+        class="flex h-20 w-full items-center justify-between px-6 py-6 lg:px-12 xl:px-20 xl:py-12"
+      >
+        <!-- Logo -->
+        <a href="./index.html" class="relative z-50 text-kaffee-brown">
+          <div class="flex flex-col leading-none">
+            <span
+              class="font-sans text-[16px] font-normal lowercase tracking-[0.02em]"
+            >
+              studio
+            </span>
+
+            <span
+              class="font-logo text-[42px] font-normal leading-[0.75] tracking-[-0.06em]"
+            >
+              kaffee
+            </span>
+          </div>
+        </a>
+
+        <!-- Menu Desktop -->
+        <div class="hidden items-center gap-[120px] lg:gap-[168px] xl:flex">
+          <nav>
+            <ul
+              class="flex items-center gap-7 font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-kaffee-brown 2xl:gap-12 2xl:text-[13px]"
+            >
+              <li>
+                <a
+                  href="./index.html"
+                  class="transition hover:text-kaffee-caramel"
+                >
+                  Home
+                </a>
+              </li>
+
+              <li>
+                <a href="#agenda" class="transition hover:text-kaffee-caramel">
+                  Agenda
+                </a>
+              </li>
+
+              <li>
+                <a href="#valores" class="transition hover:text-kaffee-caramel">
+                  Valores
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#reservar"
+                  class="transition hover:text-kaffee-caramel"
+                >
+                  Como reservar
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#pagamento"
+                  class="transition hover:text-kaffee-caramel"
+                >
+                  Pagamento
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <a
+            href="#agenda"
+            class="flex items-center gap-2 rounded-[3px] bg-kaffee-brown px-5 py-3 font-sans text-[12px] font-bold uppercase tracking-[0.12em] text-kaffee-cream shadow-md transition duration-300 ease-in-out hover:bg-kaffee-earth"
+          >
+            <i class="fa-brands fa-whatsapp text-[15px]"></i>
+            Agendar Ensaio
+          </a>
+        </div>
+
+        <!-- Botão Mobile -->
+        <button
+          id="menuButton"
+          class="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 xl:hidden"
+          type="button"
+          aria-label="Abrir menu"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+        >
+          <span
+            class="menu-line h-px w-7 bg-kaffee-brown transition-all duration-300"
+          ></span>
+          <span
+            class="menu-line h-px w-7 bg-kaffee-brown transition-all duration-300"
+          ></span>
+          <span
+            class="menu-line h-px w-7 bg-kaffee-brown transition-all duration-300"
+          ></span>
+        </button>
+      </div>
+
+      <!-- Menu Mobile -->
+      <div
+        id="mobileMenu"
+        class="pointer-events-none fixed inset-0 z-40 flex translate-y-[-12px] flex-col justify-center bg-kaffee-cream/95 px-8 opacity-0 backdrop-blur-md transition-all duration-300 xl:hidden"
+      >
+        <nav>
+          <ul
+            class="space-y-8 text-center font-sans text-[15px] font-medium uppercase tracking-[0.28em] text-kaffee-brown"
+          >
+            <li>
+              <a
+                href="./index.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#agenda"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Agenda
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#valores"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Valores
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#reservar"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Como reservar
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#pagamento"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Pagamento
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <a
+          href="#agenda"
+          class="mobile-link mx-auto mt-12 inline-flex items-center justify-center rounded-[3px] bg-kaffee-brown px-6 py-4 font-sans text-[12px] font-bold uppercase tracking-[0.16em] text-kaffee-cream shadow-md transition hover:bg-kaffee-earth"
+        >
+          Agendar Ensaio
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Agenda -->
+      <section
+        class="relative flex min-h-[520px] items-center justify-center overflow-hidden bg-kaffee-cream bg-cover bg-center"
+        style="
+          background-image:
+            linear-gradient(rgba(109, 57, 20, 0.38), rgba(109, 57, 20, 0.38)),
+            url(&quot;./assets/hero-kaffee.png&quot;);
+        "
+      >
+        <div class="relative z-10 px-6 text-center text-kaffee-cream">
+          <p
+            class="mb-3 font-sans text-[12px] font-medium uppercase tracking-[0.35em]"
+          >
+            Studio Kaffee
+          </p>
+
+          <h1
+            class="font-logo text-[78px] font-normal leading-none tracking-[-0.06em] md:text-[118px]"
+          >
+            Agenda
+          </h1>
+        </div>
+      </section>
+
+      <!-- Agenda / Funcionamento -->
+      <section id="agenda" class="bg-kaffee-cream px-6 pb-14 pt-10">
+        <div
+          class="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[1.15fr_0.85fr]"
+        >
+          <!-- Calendário fake / layout -->
+          <div>
+            <div class="mb-8">
+              <p
+                class="mb-3 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-kaffee-earth"
+              >
+                Disponibilidade
+              </p>
+
+              <h2
+                class="font-logo text-[44px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[56px]"
+              >
+                Escolha seu horário.
+              </h2>
+            </div>
+
+            <div
+              class="overflow-hidden border border-kaffee-caramel/30 bg-kaffee-caramel/10"
+            >
+              <!-- topo calendário -->
+              <div
+                class="flex items-center justify-between border-b border-kaffee-caramel/30 px-5 py-4"
+              >
+                <div class="flex items-center gap-3">
+                  <button
+                    id="prevMonth"
+                    class="flex h-9 w-9 items-center justify-center border border-kaffee-caramel/40 text-kaffee-brown transition hover:bg-kaffee-caramel/20"
+                    type="button"
+                    aria-label="Mês anterior"
+                  >
+                    <i class="fa-solid fa-chevron-left text-[12px]"></i>
+                  </button>
+
+                  <button
+                    id="nextMonth"
+                    class="flex h-9 w-9 items-center justify-center border border-kaffee-caramel/40 text-kaffee-brown transition hover:bg-kaffee-caramel/20"
+                    type="button"
+                    aria-label="Próximo mês"
+                  >
+                    <i class="fa-solid fa-chevron-right text-[12px]"></i>
+                  </button>
+                </div>
+
+                <h3
+                  id="calendarTitle"
+                  class="font-sans text-[13px] font-semibold uppercase tracking-[0.22em] text-kaffee-brown"
+                >
+                  Carregando...
+                </h3>
+
+                <button
+                  id="todayButton"
+                  class="border border-kaffee-brown px-4 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-kaffee-brown transition hover:bg-kaffee-brown hover:text-kaffee-cream"
+                  type="button"
+                >
+                  Hoje
+                </button>
+              </div>
+
+              <!-- Calendário desktop/tablet -->
+              <div class="hidden md:block">
+                <div
+                  class="grid grid-cols-7 border-b border-kaffee-caramel/30 text-center font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-kaffee-brown"
+                >
+                  <div class="py-3">Seg</div>
+                  <div class="py-3">Ter</div>
+                  <div class="py-3">Qua</div>
+                  <div class="py-3">Qui</div>
+                  <div class="py-3">Sex</div>
+                  <div class="py-3">Sáb</div>
+                  <div class="py-3">Dom</div>
+                </div>
+
+                <div id="calendarGrid" class="grid grid-cols-7 text-kaffee-brown"></div>
+              </div>
+
+              <!-- Lista mobile -->
+              <div
+                id="agendaList"
+                class="divide-y divide-kaffee-caramel/20 md:hidden"
+              ></div>
+
+              <!-- legenda -->
+              <div
+                class="flex flex-wrap items-center gap-6 px-5 py-4 font-sans text-[12px] text-kaffee-earth"
+              >
+                <div class="flex items-center gap-2">
+                  <span class="h-3 w-3 rounded-full bg-kaffee-earth"></span>
+                  Horários disponíveis
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <span class="h-3 w-3 rounded-full bg-kaffee-caramel"></span>
+                  Horários ocupados
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Como funciona -->
+          <aside class="lg:pt-24">
+            <div
+              class="border border-kaffee-caramel/30 bg-kaffee-caramel/10 px-7 py-8 md:px-9 md:py-10"
+            >
+              <p
+                class="mb-4 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-kaffee-earth"
+              >
+                Como funciona
+              </p>
+
+              <h2
+                class="font-logo text-[38px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[46px]"
+              >
+                Como funciona a agenda.
+              </h2>
+
+              <div class="mt-5 h-px w-12 bg-kaffee-caramel"></div>
+
+              <div class="mt-8 space-y-6">
+                <div class="flex gap-4">
+                  <i
+                    class="fa-regular fa-calendar-days mt-1 text-[22px] text-kaffee-brown"
+                  ></i>
+                  <p
+                    class="font-sans text-[14px] leading-[1.8] text-kaffee-earth"
+                  >
+                    Consulte os dias disponíveis e escolha o período desejado.
+                  </p>
+                </div>
+
+                <div class="flex gap-4">
+                  <i
+                    class="fa-regular fa-clock mt-1 text-[22px] text-kaffee-brown"
+                  ></i>
+                  <p
+                    class="font-sans text-[14px] leading-[1.8] text-kaffee-earth"
+                  >
+                    A locação mínima é de 2 horas. A partir de 4 horas, o valor
+                    por hora tem condição especial.
+                  </p>
+                </div>
+
+                <div class="flex gap-4">
+                  <i
+                    class="fa-brands fa-whatsapp mt-1 text-[22px] text-kaffee-brown"
+                  ></i>
+                  <p
+                    class="font-sans text-[14px] leading-[1.8] text-kaffee-earth"
+                  >
+                    Antes de confirmar, entre em contato pelo WhatsApp para
+                    validar se o horário escolhido ainda está disponível.
+                  </p>
+                </div>
+
+                <div class="flex gap-4">
+                  <i
+                    class="fa-solid fa-door-open mt-1 text-[22px] text-kaffee-brown"
+                  ></i>
+                  <p
+                    class="font-sans text-[14px] leading-[1.8] text-kaffee-earth"
+                  >
+                    Funcionamento: terça a domingo, das 10h às 17h.
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-9 flex flex-col gap-4 sm:flex-row">
+                <a
+                  href="#valores"
+                  class="inline-flex items-center justify-center border border-kaffee-brown px-6 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-kaffee-brown transition duration-300 ease-in-out hover:bg-kaffee-caramel/20"
+                >
+                  Ver valores
+                </a>
+
+                <a
+                  href="#pagamento"
+                  class="inline-flex items-center justify-center bg-kaffee-brown px-6 py-3 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-kaffee-cream shadow-md transition duration-300 ease-in-out hover:bg-[#61300d]"
+                >
+                  Ver pagamento
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Valores -->
+      <section id="valores" class="bg-kaffee-caramel/10 px-6 pb-14 pt-10">
+        <div class="mx-auto max-w-[980px] text-center">
+          <p
+            class="mb-3 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-kaffee-earth"
+          >
+            Valores
+          </p>
+
+          <h2
+            class="font-logo text-[48px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[68px]"
+          >
+            Locação do estúdio
+          </h2>
+          
+        </div>
+
+        <div class="mx-auto mt-12 grid max-w-[860px] gap-4">
+          <div
+            class="bg-kaffee-brown px-6 py-4 text-center font-sans text-[12px] font-bold uppercase tracking-[0.22em] text-kaffee-cream"
+          >
+            Locação mínima de duas horas
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div
+              class="border border-kaffee-caramel/30 bg-kaffee-cream px-6 py-7 text-center"
+            >
+              <p
+                class="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-kaffee-earth"
+              >
+                Hora
+              </p>
+
+              <p
+                class="mt-3 font-logo text-[42px] leading-none text-kaffee-brown"
+              >
+                R$100
+              </p>
+            </div>
+
+            <div
+              class="border border-kaffee-caramel/30 bg-kaffee-cream px-6 py-7 text-center"
+            >
+              <p
+                class="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-kaffee-earth"
+              >
+                A partir de 4h
+              </p>
+
+              <p
+                class="mt-3 font-logo text-[42px] leading-none text-kaffee-brown"
+              >
+                R$95/hora
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-kaffee-brown px-6 py-7 text-center text-kaffee-cream">
+            <p
+              class="font-sans text-[12px] font-bold uppercase tracking-[0.22em]"
+            >
+              Diária promocional
+            </p>
+
+            <p class="mt-2 font-logo text-[48px] leading-none">R$560</p>
+
+            <p class="mt-2 font-sans text-[13px] font-medium">
+              até 7 horas de uso
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Como reservar -->
+      <section id="reservar" class="bg-kaffee-cream px-6 pb-14 pt-10">
+        <div class="mx-auto max-w-[1180px]">
+          <div class="text-center">
+            <p
+              class="mb-3 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-kaffee-earth"
+            >
+              Como reservar
+            </p>
+
+            <h2
+              class="font-logo text-[44px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[58px]"
+            >
+              Reserve em poucos passos.
+            </h2>
+          </div>
+
+          <div class="mt-12 grid gap-5 md:grid-cols-5">
+            <!-- Passo 1 -->
+            <article
+              class="relative border border-kaffee-caramel/30 bg-kaffee-caramel/10 px-5 py-8 text-center"
+            >
+              <span
+                class="absolute left-1/2 top-0 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-kaffee-brown font-sans text-[12px] font-bold text-kaffee-cream"
+              >
+                1
+              </span>
+
+              <i
+                class="fa-regular fa-calendar-days text-[28px] text-kaffee-brown"
+              ></i>
+
+              <h3
+                class="mt-5 font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-kaffee-brown"
+              >
+                Consulte a disponibilidade
+              </h3>
+
+              <p
+                class="mt-4 font-sans text-[13px] leading-[1.7] text-kaffee-earth"
+              >
+                Verifique os horários disponíveis e entre em contato pelo
+                WhatsApp.
+              </p>
+            </article>
+
+            <!-- Passo 2 -->
+            <article
+              class="relative border border-kaffee-caramel/30 bg-kaffee-caramel/10 px-5 py-8 text-center"
+            >
+              <span
+                class="absolute left-1/2 top-0 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-kaffee-brown font-sans text-[12px] font-bold text-kaffee-cream"
+              >
+                2
+              </span>
+
+              <i
+                class="fa-regular fa-envelope text-[28px] text-kaffee-brown"
+              ></i>
+
+              <h3
+                class="mt-5 font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-kaffee-brown"
+              >
+                Receba as informações
+              </h3>
+
+              <p
+                class="mt-4 font-sans text-[13px] leading-[1.7] text-kaffee-earth"
+              >
+                Você receberá todos os detalhes, valores e condições da locação.
+              </p>
+            </article>
+
+            <!-- Passo 3 -->
+            <article
+              class="relative border border-kaffee-caramel/30 bg-kaffee-caramel/10 px-5 py-8 text-center"
+            >
+              <span
+                class="absolute left-1/2 top-0 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-kaffee-brown font-sans text-[12px] font-bold text-kaffee-cream"
+              >
+                3
+              </span>
+
+              <i
+                class="fa-regular fa-circle-check text-[28px] text-kaffee-brown"
+              ></i>
+
+              <h3
+                class="mt-5 font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-kaffee-brown"
+              >
+                Confirme sua presença
+              </h3>
+
+              <p
+                class="mt-4 font-sans text-[13px] leading-[1.7] text-kaffee-earth"
+              >
+                Após alinharmos tudo, você confirma o dia e o horário escolhido.
+              </p>
+            </article>
+
+            <!-- Passo 4 -->
+            <article
+              class="relative border border-kaffee-caramel/30 bg-kaffee-caramel/10 px-5 py-8 text-center"
+            >
+              <span
+                class="absolute left-1/2 top-0 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-kaffee-brown font-sans text-[12px] font-bold text-kaffee-cream"
+              >
+                4
+              </span>
+
+              <i
+                class="fa-regular fa-credit-card text-[28px] text-kaffee-brown"
+              ></i>
+
+              <h3
+                class="mt-5 font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-kaffee-brown"
+              >
+                Pagamento de confirmação
+              </h3>
+
+              <p
+                class="mt-4 font-sans text-[13px] leading-[1.7] text-kaffee-earth"
+              >
+                O pagamento da confirmação garante sua reserva.
+              </p>
+            </article>
+
+            <!-- Passo 5 -->
+            <article
+              class="relative border border-kaffee-caramel/30 bg-kaffee-caramel/10 px-5 py-8 text-center"
+            >
+              <span
+                class="absolute left-1/2 top-0 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-kaffee-brown font-sans text-[12px] font-bold text-kaffee-cream"
+              >
+                5
+              </span>
+
+              <i
+                class="fa-regular fa-door-open text-[28px] text-kaffee-brown"
+              ></i>
+
+              <h3
+                class="mt-5 font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-kaffee-brown"
+              >
+                Só chegar
+              </h3>
+
+              <p
+                class="mt-4 font-sans text-[13px] leading-[1.7] text-kaffee-earth"
+              >
+                No dia do ensaio, é só chegar e aproveitar seu momento no
+                estúdio.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pagamento / Cancelamento -->
+      <section id="pagamento" class="bg-kaffee-caramel/10 px-6 pb-14 pt-10">
+        <div class="mx-auto max-w-[1040px]">
+          <!-- Título da seção -->
+          <div class="mb-12 text-center">
+            <p
+              class="mb-3 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-kaffee-earth"
+            >
+              Informações finais
+            </p>
+
+            <h2
+              class="font-logo text-[44px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[58px]"
+            >
+              Pagamento e cancelamento
+            </h2>
+
+            
+          </div>
+
+          <!-- Cards -->
+          <div class="grid items-stretch gap-8 md:grid-cols-2">
+            <!-- Formas de pagamento -->
+            <article
+              class="h-full border border-kaffee-caramel/30 bg-kaffee-cream px-8 py-9"
+            >
+              <div class="flex items-start gap-5">
+                <div class="flex w-8 shrink-0 justify-center">
+                  <i
+                    class="fa-regular fa-credit-card mt-1 text-[26px] text-kaffee-brown"
+                  ></i>
+                </div>
+
+                <div>
+                  <h3
+                    class="font-logo text-[34px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[36px]"
+                  >
+                    Formas de pagamento
+                  </h3>
+
+                  <ul
+                    class="mt-6 space-y-2 font-sans text-[14px] leading-[1.8] text-kaffee-earth"
+                  >
+                    <li>• PIX</li>
+                    <li>• Cartão de crédito via link</li>
+                    <li>• Débito</li>
+                  </ul>
+
+                  <p
+                    class="mt-7 font-sans text-[13px] leading-[1.8] text-kaffee-earth"
+                  >
+                    O pagamento de confirmação é necessário para garantir a
+                    reserva do horário.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Política de cancelamento -->
+            <article
+              class="h-full border border-kaffee-caramel/30 bg-kaffee-cream px-8 py-9"
+            >
+              <div class="flex items-start gap-5">
+                <div class="flex w-8 shrink-0 justify-center">
+                  <i
+                    class="fa-solid fa-circle-info mt-1 text-[26px] text-kaffee-brown"
+                  ></i>
+                </div>
+
+                <div>
+                  <h3
+                    class="font-logo text-[34px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[36px]"
+                  >
+                    Política de cancelamento
+                  </h3>
+
+                  <div
+                    class="mt-6 space-y-4 font-sans text-[13px] leading-[1.8] text-kaffee-earth"
+                  >
+                    <p>
+                      Cancelamentos com até 48h de antecedência recebem
+                      reembolso total do valor pago.
+                    </p>
+
+                    <p>Cancelamentos com menos de 48h não têm reembolso.</p>
+
+                    <p>
+                      Em caso de remarcação, entre em contato para avaliarmos a
+                      disponibilidade.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- CTA dentro da seção -->
+          <div class="mt-10 flex justify-center">
+            <a
+              href="#agenda"
+              class="inline-flex w-full items-center justify-center gap-2 bg-kaffee-brown px-6 py-4 font-sans text-[12px] font-bold uppercase tracking-[0.14em] text-kaffee-cream shadow-md transition duration-300 ease-in-out hover:bg-[#61300d] md:w-auto md:px-10"
+            >
+              <i class="fa-regular fa-calendar-days text-[15px]"></i>
+              Ver disponibilidade e agendar
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="border-t border-kaffee-caramel/25 bg-kaffee-caramel/10 px-6 py-14 text-center"
+    >
+      <div class="flex items-center justify-center gap-3">
+        <a
+          href="#"
+          aria-label="YouTube"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-youtube text-[18px]"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="Instagram"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-instagram text-[18px]"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="WhatsApp"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-whatsapp text-[18px]"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="Pinterest"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-pinterest-p text-[18px]"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="Facebook"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-facebook-f text-[18px]"></i>
+        </a>
+
+        <a
+          href="mailto:contato@studiokaffee.com"
+          aria-label="Email"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-regular fa-envelope text-[18px]"></i>
+        </a>
+      </div>
+
+      <p
+        class="mt-7 font-sans text-[11px] font-medium uppercase tracking-[0.08em] text-kaffee-brown"
+      >
+        Studio Kaffee • Santo André - SP
+      </p>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

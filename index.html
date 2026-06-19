@@ -21,7 +21,7 @@
       class="relative z-50 border-b border-kaffee-caramel/25 bg-kaffee-cream"
     >
       <div
-        class="flex h-20 w-full items-center justify-between px-6 py-6 md:px-20 md:py-12"
+        class="flex h-20 w-full items-center justify-between px-6 py-6 lg:px-12 xl:px-20 xl:py-12"
       >
         <!-- Logo -->
         <a href="#" class="relative z-50 text-kaffee-brown">
@@ -41,19 +41,21 @@
         </a>
 
         <!-- Menu Desktop -->
-        <div class="hidden items-center gap-[168px] md:flex">
+        <div class="hidden items-center gap-10 xl:flex xl:gap-[120px]">
           <nav>
             <ul
-              class="flex items-center gap-12 font-sans text-[13px] font-semibold uppercase tracking-[0.22em] text-kaffee-brown"
+              class="flex items-center gap-7 font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-kaffee-brown 2xl:gap-12 2xl:text-[13px]"
             >
               <li>
-                <a href="#agenda" class="transition hover:text-kaffee-caramel"
+                <a
+                  href="agenda.html"
+                  class="transition hover:text-kaffee-caramel"
                   >Agenda</a
                 >
               </li>
               <li>
                 <a href="#estudio" class="transition hover:text-kaffee-caramel"
-                  >Estúdio</a
+                  >studio</a
                 >
               </li>
               <li>
@@ -70,7 +72,7 @@
           </nav>
 
           <a
-            href="#agenda"
+            href="agenda.html"
             class="flex items-center gap-2 rounded-[3px] bg-kaffee-brown px-5 py-3 font-sans text-[12px] font-bold uppercase tracking-[0.12em] text-kaffee-cream shadow-md transition hover:bg-kaffee-earth"
           >
             <svg
@@ -95,7 +97,7 @@
         <!-- Botão Mobile -->
         <button
           id="menuButton"
-          class="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+          class="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 xl:hidden"
           type="button"
           aria-label="Abrir menu"
           aria-controls="mobileMenu"
@@ -116,7 +118,7 @@
       <!-- Menu Mobile -->
       <div
         id="mobileMenu"
-        class="pointer-events-none fixed inset-0 z-40 flex translate-y-[-12px] flex-col justify-center bg-kaffee-cream/95 px-8 opacity-0 backdrop-blur-md transition-all duration-300 md:hidden"
+        class="pointer-events-none fixed inset-0 z-40 flex translate-y-[-12px] flex-col justify-center bg-kaffee-cream/95 px-8 opacity-0 backdrop-blur-md transition-all duration-300 2xl:hidden"
       >
         <nav>
           <ul
@@ -124,7 +126,7 @@
           >
             <li>
               <a
-                href="#agenda"
+                href="agenda.html"
                 class="mobile-link block transition hover:text-kaffee-caramel"
                 >Agenda</a
               >
@@ -133,7 +135,7 @@
               <a
                 href="#estudio"
                 class="mobile-link block transition hover:text-kaffee-caramel"
-                >Estúdio</a
+                >studio</a
               >
             </li>
             <li>
@@ -154,7 +156,7 @@
         </nav>
 
         <a
-          href="#agenda"
+          href="agenda.html"
           class="mobile-link mx-auto mt-12 inline-flex items-center justify-center rounded-[3px] bg-kaffee-brown px-6 py-4 font-sans text-[12px] font-bold uppercase tracking-[0.16em] text-kaffee-cream shadow-md transition hover:bg-kaffee-earth"
         >
           Agendar Ensaio
@@ -207,7 +209,7 @@
         <p
           class="mx-auto mt-6 max-w-130 font-sans text-[14px] leading-[1.8] text-kaffee-earth"
         >
-          Mais do que um estúdio, o kaffee é um espaço criado para acelerar,
+          Mais do que um studio, o kaffee é um espaço criado para acelerar,
           acolher e proporcionar uma experiência completa. Cores, cheiros e
           sensações que despertam presença e conexão.
         </p>
@@ -347,11 +349,11 @@
                   href="#estudio"
                   class="inline-flex items-center justify-center border border-kaffee-brown px-6 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-kaffee-brown transition duration-300 hover:bg-[#e9d6bf] ease-in-out"
                 >
-                  Conhecer o estúdio
+                  Conhecer o studio
                 </a>
 
                 <a
-                  href="#agenda"
+                  href="agenda.html"
                   class="inline-flex items-center justify-center gap-2 bg-kaffee-brown px-6 py-3 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-kaffee-cream shadow-md hover:bg-[#5e300f] transition duration-300 ease-in-out"
                 >
                   <svg
