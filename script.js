@@ -86,8 +86,8 @@ const monthNames = [
 
 const DEFAULT_AVAILABLE_INTERVALS = [
   {
-    start: 10 * 60,
-    end: 17 * 60,
+    start: 9 * 60,
+    end: 18 * 60,
   },
 ];
 
@@ -232,6 +232,10 @@ function isPastDate(date) {
   );
 
   return selectedDate < getTodayAtMidnight();
+}
+
+function isMonday(date) {
+  return date.getDay() === 1;
 }
 
 function intervalsAreEqual(firstIntervals, secondIntervals) {
@@ -384,7 +388,11 @@ function getAvailableTimePoints(intervals, stepInMinutes = 30) {
   const points = [];
 
   intervals.forEach((interval) => {
-    for (let time = interval.start; time <= interval.end; time += stepInMinutes) {
+    for (
+      let time = interval.start;
+      time <= interval.end;
+      time += stepInMinutes
+    ) {
       points.push(time);
     }
   });
@@ -439,7 +447,18 @@ function getAgendaByDate() {
   }, {});
 }
 
-function getDayAvailability(entries = []) {
+function getDayAvailability(date, entries = []) {
+  if (isMonday(date)) {
+    return {
+      status: "Indisponível",
+      horario: "Indisponível",
+      observacao: "Estúdio indisponível às segundas-feiras",
+      busyText: "",
+      isException: true,
+      availableIntervals: [],
+    };
+  }
+
   const closedEntry = entries.find((entry) =>
     isStatus(entry.status, ["Fechado", "Indisponível", "Indisponivel"]),
   );
@@ -585,9 +604,11 @@ function openBookingModal(dayItem) {
   }
 
   const availableIntervals = dayItem.availableIntervals || [];
-  const startTimes = getAvailableTimePoints(availableIntervals).filter((time) => {
-    return getValidEndTimes(time, availableIntervals).length > 0;
-  });
+  const startTimes = getAvailableTimePoints(availableIntervals).filter(
+    (time) => {
+      return getValidEndTimes(time, availableIntervals).length > 0;
+    },
+  );
 
   selectedBookingDate = dayItem.date;
   selectedBookingAvailability = dayItem;
@@ -720,7 +741,7 @@ function getMonthDays(year, month) {
     const date = new Date(year, month, day);
     const dateKey = formatDateKey(date);
     const entries = agendaByDate[dateKey] || [];
-    const availability = getDayAvailability(entries);
+    const availability = getDayAvailability(date, entries);
 
     days.push({
       date,
@@ -829,7 +850,7 @@ function renderMobileAgendaList(monthDays) {
         </p>
 
         <p class="mt-2 font-sans text-[13px] leading-[1.7] text-kaffee-earth">
-          Dias não listados abaixo seguem como <strong>Livre</strong>, das 10h às 17h.
+          Dias não listados abaixo seguem como <strong>Livre</strong>, das 9h às 18h.
         </p>
 
         <div class="mt-5">
