@@ -2,11 +2,18 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Poppins:wght@400;500;600;700&display=swap");
 
-/* Alterar fonte Bodoni para Gavelin, quando tivermos o arquivo */
+@font-face {
+  font-family: "Gavelin";
+  src: url("../assets/fonts/Gavelin.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme {
   --font-sans: "Poppins", sans-serif;
   --font-logo: "Bodoni Moda", serif;
+  --font-brand: "Gavelin", serif;
 
   --color-kaffee-brown: #6d3914;
   --color-kaffee-caramel: #ab7843;
