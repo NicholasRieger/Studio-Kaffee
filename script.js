@@ -566,7 +566,8 @@ function updateEndTimeOptions() {
   }
 
   const startTime = Number(bookingStartTimeSelect.value);
-  const availableIntervals = selectedBookingAvailability.availableIntervals || [];
+  const availableIntervals =
+    selectedBookingAvailability.availableIntervals || [];
   const endTimes = getValidEndTimes(startTime, availableIntervals);
 
   fillSelectWithTimes(bookingEndTimeSelect, endTimes);
@@ -692,7 +693,9 @@ function updateBookingWhatsAppLink() {
     : "";
 
   const selectedTime =
-    startTime && endTime ? `${startTime} - ${endTime}` : "Ainda não selecionado";
+    startTime && endTime
+      ? `${startTime} - ${endTime}`
+      : "Ainda não selecionado";
 
   const studioUse = bookingUseInput.value.trim();
 
@@ -989,16 +992,18 @@ function renderMobileAgendaList(monthDays) {
     );
   });
 
-  agendaList.querySelectorAll("[data-mobile-booking-date]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const dateKey = button.getAttribute("data-mobile-booking-date");
-      const dayItem = monthDays.find((item) => item.dateKey === dateKey);
+  agendaList
+    .querySelectorAll("[data-mobile-booking-date]")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        const dateKey = button.getAttribute("data-mobile-booking-date");
+        const dayItem = monthDays.find((item) => item.dateKey === dateKey);
 
-      if (dayItem) {
-        openBookingModal(dayItem);
-      }
+        if (dayItem) {
+          openBookingModal(dayItem);
+        }
+      });
     });
-  });
 }
 
 function showAgendaError(message = "Agenda indisponível") {
@@ -1195,3 +1200,124 @@ document.addEventListener("keydown", (event) => {
 });
 
 loadAgendaFromSheet();
+
+const galleryTrack = document.querySelector("#galleryTrack");
+const galleryPrev = document.querySelector("#galleryPrev");
+const galleryNext = document.querySelector("#galleryNext");
+const galleryDots = document.querySelector("#galleryDots");
+
+let galleryIndex = 0;
+
+function getVisibleGallerySlides() {
+  if (window.innerWidth >= 1024) return 4;
+  if (window.innerWidth >= 768) return 2;
+  return 1;
+}
+
+function getGalleryStep() {
+  if (!galleryTrack) return 0;
+
+  const firstSlide = galleryTrack.querySelector(".gallery-slide");
+  if (!firstSlide) return 0;
+
+  const trackStyles = window.getComputedStyle(galleryTrack);
+  const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || 0);
+
+  return firstSlide.offsetWidth + gap;
+}
+
+function getGalleryMaxIndex() {
+  if (!galleryTrack) return 0;
+
+  const slides = galleryTrack.querySelectorAll(".gallery-slide");
+  const visibleSlides = getVisibleGallerySlides();
+
+  return Math.max(slides.length - visibleSlides, 0);
+}
+
+function updateGalleryButtons() {
+  const maxIndex = getGalleryMaxIndex();
+
+  if (galleryPrev) {
+    galleryPrev.disabled = galleryIndex === 0;
+  }
+
+  if (galleryNext) {
+    galleryNext.disabled = galleryIndex === maxIndex;
+  }
+}
+
+function renderGalleryDots() {
+  if (!galleryDots || !galleryTrack) return;
+
+  const maxIndex = getGalleryMaxIndex();
+
+  galleryDots.innerHTML = "";
+
+  for (let i = 0; i <= maxIndex; i++) {
+    galleryDots.insertAdjacentHTML(
+      "beforeend",
+      `
+        <button
+          type="button"
+          data-gallery-dot="${i}"
+          aria-label="Ir para imagem ${i + 1}"
+          class="h-2.5 w-2.5 cursor-pointer rounded-full transition ${
+            i === galleryIndex ? "bg-kaffee-brown" : "bg-kaffee-caramel/30"
+          }"
+        ></button>
+      `,
+    );
+  }
+
+  galleryDots.querySelectorAll("[data-gallery-dot]").forEach((dot) => {
+    dot.addEventListener("click", () => {
+      galleryIndex = Number(dot.getAttribute("data-gallery-dot"));
+      updateGalleryCarousel();
+    });
+  });
+}
+
+function updateGalleryCarousel() {
+  if (!galleryTrack) return;
+
+  const maxIndex = getGalleryMaxIndex();
+
+  if (galleryIndex < 0) {
+    galleryIndex = 0;
+  }
+
+  if (galleryIndex > maxIndex) {
+    galleryIndex = maxIndex;
+  }
+
+  const moveX = galleryIndex * getGalleryStep();
+
+  galleryTrack.style.transform = `translateX(-${moveX}px)`;
+
+  updateGalleryButtons();
+  renderGalleryDots();
+}
+
+galleryNext?.addEventListener("click", () => {
+  const maxIndex = getGalleryMaxIndex();
+
+  if (galleryIndex < maxIndex) {
+    galleryIndex += 1;
+    updateGalleryCarousel();
+  }
+});
+
+galleryPrev?.addEventListener("click", () => {
+  if (galleryIndex > 0) {
+    galleryIndex -= 1;
+    updateGalleryCarousel();
+  }
+});
+
+window.addEventListener("resize", () => {
+  galleryIndex = 0;
+  updateGalleryCarousel();
+});
+
+updateGalleryCarousel();
