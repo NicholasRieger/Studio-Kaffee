@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/output.css" />
+    <title>Sobre o Estúdio | Studio Kaffee</title>
+
+    <link
+      rel="shortcut icon"
+      href="ChatGPT_Image_15_de_jun._de_2026__20_12_13-removebg-preview.png"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+
+  <body class="bg-kaffee-cream font-sans text-kaffee-brown">
+    <!-- Header -->
+    <header
+      class="relative z-50 border-b border-kaffee-caramel/25 bg-kaffee-cream"
+    >
+      <div
+        class="flex h-20 w-full items-center justify-between px-6 py-6 lg:px-12 xl:px-20 xl:py-12"
+      >
+        <!-- Logo -->
+        <a href="./index.html" class="relative z-50 text-kaffee-brown">
+          <div class="flex flex-col leading-none">
+            <span
+              class="font-brand text-[42px] font-normal leading-[0.75] tracking-[-0.04em]"
+            >
+              kaffee
+            </span>
+
+            <span
+              class="mt-1 text-center font-sans text-[10px] font-semibold uppercase tracking-[0.28em]"
+            >
+              estúdio
+            </span>
+          </div>
+        </a>
+
+        <!-- Menu Desktop -->
+        <div class="hidden items-center gap-[120px] lg:gap-[168px] xl:flex">
+          <nav>
+            <ul
+              class="flex items-center gap-7 font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-kaffee-brown 2xl:gap-12 2xl:text-[13px]"
+            >
+              <li>
+                <a
+                  href="./index.html"
+                  class="transition hover:text-kaffee-caramel"
+                >
+                  Home
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="./agenda.html#agenda"
+                  class="transition hover:text-kaffee-caramel"
+                >
+                  Agenda
+                </a>
+              </li>
+
+              <li>
+                <a href="sobre.html" class="transition hover:text-kaffee-caramel">
+                  Sobre mim
+                </a>
+              </li>
+
+              <li>
+                <a href="faq.html" class="transition hover:text-kaffee-caramel">
+                  FAQ
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <a
+            href="./agenda.html#agenda"
+            class="flex items-center gap-2 rounded-[3px] bg-kaffee-brown px-5 py-3 font-sans text-[12px] font-bold uppercase tracking-[0.12em] text-kaffee-cream shadow-md transition hover:bg-kaffee-earth"
+          >
+            <i class="fa-brands fa-whatsapp text-[15px]"></i>
+            Agendar Ensaio
+          </a>
+        </div>
+
+        <!-- Botão Mobile -->
+        <button
+          id="menuButton"
+          class="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 xl:hidden"
+          type="button"
+          aria-label="Abrir menu"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+        >
+          <span
+            class="menu-line block h-px w-7 bg-kaffee-brown transition duration-300"
+          ></span>
+          <span
+            class="menu-line block h-px w-7 bg-kaffee-brown transition duration-300"
+          ></span>
+          <span
+            class="menu-line block h-px w-7 bg-kaffee-brown transition duration-300"
+          ></span>
+        </button>
+      </div>
+
+      <!-- Menu Mobile -->
+      <div
+        id="mobileMenu"
+        class="pointer-events-none fixed inset-0 z-40 flex translate-y-[-12px] flex-col justify-center bg-kaffee-cream/95 px-8 opacity-0 backdrop-blur-md transition-all duration-300 xl:hidden"
+      >
+        <nav class="text-center">
+          <ul
+            class="space-y-7 font-sans text-[13px] font-semibold uppercase tracking-[0.22em] text-kaffee-brown"
+          >
+            <li>
+              <a
+                href="./index.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="./agenda.html#agenda"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Agenda
+              </a>
+            </li>
+            <li>
+              <a
+                href="sobre.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Sobre mim
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="faq.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                FAQ
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <a
+          href="./agenda.html#agenda"
+          class="mobile-link mx-auto mt-12 inline-flex items-center justify-center rounded-[3px] bg-kaffee-brown px-6 py-4 font-sans text-[12px] font-bold uppercase tracking-[0.16em] text-kaffee-cream shadow-md transition hover:bg-kaffee-earth"
+        >
+          Agendar Ensaio
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Sobre o estúdio -->
+      <section class="px-6 py-16 md:py-24 lg:px-12 xl:px-20">
+        <div
+          class="mx-auto grid max-w-[1180px] items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20"
+        >
+          <figure class="overflow-hidden bg-kaffee-caramel/10">
+            <img
+              src="./assets/sobre-estudio-principal.jpg"
+              alt="Detalhes decorativos do Studio Kaffee"
+              class="h-full min-h-[420px] w-full object-cover md:min-h-[620px]"
+            />
+          </figure>
+
+          <div class="lg:pt-8">
+            <p
+              class="font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-kaffee-earth"
+            >
+              Propósito
+            </p>
+
+            <h1
+              class="mt-5 max-w-[560px] font-logo text-[46px] font-normal leading-[1.08] tracking-[-0.04em] text-kaffee-brown md:text-[62px]"
+            >
+              Um espaço para<br class="hidden sm:block" />
+              criar e viver histórias.
+            </h1>
+
+            <div
+              class="mt-9 space-y-6 font-sans text-[14px] leading-[2] text-kaffee-earth md:text-[15px]"
+            >
+              <p>
+                O estúdio fotográfico oferece um espaço versátil para a
+                realização de diversas produções, como ensaios fotográficos de
+                marca pessoal, feminina, casal, intimista, família, ensaios para
+                lançamentos de marcas, look, campanhas, gravações de comerciais,
+                cursos, podcasts e outras atividades criativas.
+              </p>
+
+              <p>
+                O ambiente foi pensado para inspirar e acolher, com uma
+                decoração que desperta sensações e renova constantemente para
+                refletir as tendências e oferecer experiências cada vez mais
+                completas. Cada móvel e elemento foi escolhido visando um
+                aconchego que transforma o espaço em cenários com histórias,
+                funcionalidade e beleza.
+              </p>
+
+              <p>
+                Buscamos criar uma experiência onde cada detalhe é sentido e
+                vivido, com compromisso, segurança nos projetos, ar-condicionado,
+                sonoro ambiente, iluminação e equipamentos de qualidade. Aqui
+                cada produção ganha vida com personalidade e cuidado.
+              </p>
+
+              <p>
+                O estúdio conta com decoração minimalista, atemporal e
+                sofisticada, porém não idêntica, variando conforme cada cenário,
+                parede ou proposta. Além disso, a atmosfera das produções é
+                acolhedora e convidativa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- O que está incluso -->
+      <section class="px-6 pb-16 lg:px-12 xl:px-20">
+        <div
+          class="mx-auto grid max-w-[1180px] items-center gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16"
+        >
+          <div>
+            <h2
+              class="font-logo text-[36px] font-normal leading-none tracking-[-0.04em] text-kaffee-brown md:text-[42px]"
+            >
+              O que está incluso
+            </h2>
+
+            <div class="mt-5 h-px w-14 bg-kaffee-brown"></div>
+
+            <ul class="mt-8 space-y-5 font-sans text-[14px] text-kaffee-earth">
+              <li class="flex items-center gap-4">
+                <i class="fa-solid fa-wifi w-5 text-center text-kaffee-earth"></i>
+                Internet Wi-Fi
+              </li>
+              <li class="flex items-center gap-4">
+                <i class="fa-solid fa-wind w-5 text-center text-kaffee-earth"></i>
+                Ar-condicionado
+              </li>
+              <li class="flex items-center gap-4">
+                <i class="fa-solid fa-volume-low w-5 text-center text-kaffee-earth"></i>
+                Som ambiente
+              </li>
+              <li class="flex items-center gap-4">
+                <i class="fa-solid fa-mug-hot w-5 text-center text-kaffee-earth"></i>
+                Café e água à vontade
+              </li>
+              <li class="flex items-center gap-4">
+                <i class="fa-solid fa-square-parking w-5 text-center text-kaffee-earth"></i>
+                Estacionamento gratuito
+              </li>
+              <li class="flex items-center gap-4">
+                <i class="fa-solid fa-restroom w-5 text-center text-kaffee-earth"></i>
+                Banheiro privativo
+              </li>
+              <li class="flex items-center gap-4">
+                <i class="fa-solid fa-couch w-5 text-center text-kaffee-earth"></i>
+                Ambientes versáteis e decorados
+              </li>
+              <li class="flex items-center gap-4">
+                <i class="fa-regular fa-handshake w-5 text-center text-kaffee-earth"></i>
+                Suporte durante a locação
+              </li>
+            </ul>
+          </div>
+
+          <div class="grid grid-cols-2 items-end gap-3 md:gap-4">
+            <figure class="translate-y-10 overflow-hidden bg-kaffee-caramel/10">
+              <img
+                src="./assets/sobre-estudio-incluso-01.jpg"
+                alt="Mesa com objetos decorativos e café"
+                class="h-[360px] w-full object-cover md:h-[460px]"
+              />
+            </figure>
+
+            <figure class="overflow-hidden bg-kaffee-caramel/10">
+              <img
+                src="./assets/sobre-estudio-incluso-02.jpg"
+                alt="Ambiente decorado do Studio Kaffee"
+                class="h-[420px] w-full object-cover md:h-[540px]"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conheça o estúdio -->
+      <section class="px-6 pb-20 pt-12 lg:px-12 xl:px-20">
+        <div class="mx-auto max-w-[1180px] text-center">
+          <h2
+            class="font-logo text-[38px] font-normal leading-none tracking-[-0.04em] text-kaffee-brown md:text-[46px]"
+          >
+            Conheça o estúdio
+          </h2>
+
+          <p class="mx-auto mt-4 max-w-[520px] font-sans text-[14px] text-kaffee-earth">
+            Ambientes pensados para criar com luz, textura e aconchego.
+          </p>
+
+          <div class="relative mt-10">
+            <button
+              type="button"
+              aria-label="Imagem anterior"
+              class="absolute left-0 top-1/2 z-10 hidden h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-kaffee-cream text-kaffee-brown shadow-md transition hover:bg-kaffee-caramel/20 md:flex"
+            >
+              <i class="fa-solid fa-chevron-left text-[13px]"></i>
+            </button>
+
+            <div
+              class="grid gap-3 overflow-hidden md:grid-cols-5 md:gap-4"
+            >
+              <figure class="overflow-hidden bg-kaffee-caramel/10">
+                <img
+                  src="./assets/galeria-estudio-01.jpg"
+                  alt="Cenário com cortina e arco do Studio Kaffee"
+                  class="h-[260px] w-full object-cover transition duration-500 hover:scale-105 md:h-[250px]"
+                />
+              </figure>
+
+              <figure class="overflow-hidden bg-kaffee-caramel/10">
+                <img
+                  src="./assets/galeria-estudio-02.jpg"
+                  alt="Poltrona e iluminação natural no Studio Kaffee"
+                  class="h-[260px] w-full object-cover transition duration-500 hover:scale-105 md:h-[250px]"
+                />
+              </figure>
+
+              <figure class="overflow-hidden bg-kaffee-caramel/10">
+                <img
+                  src="./assets/galeria-estudio-03.jpg"
+                  alt="Móvel decorativo do Studio Kaffee"
+                  class="h-[260px] w-full object-cover transition duration-500 hover:scale-105 md:h-[250px]"
+                />
+              </figure>
+
+              <figure class="overflow-hidden bg-kaffee-caramel/10">
+                <img
+                  src="./assets/galeria-estudio-04.jpg"
+                  alt="Sala com sofá e mesa de centro do Studio Kaffee"
+                  class="h-[260px] w-full object-cover transition duration-500 hover:scale-105 md:h-[250px]"
+                />
+              </figure>
+
+              <figure class="overflow-hidden bg-kaffee-caramel/10">
+                <img
+                  src="./assets/galeria-estudio-05.jpg"
+                  alt="Cantinho decorado com cafeteira no Studio Kaffee"
+                  class="h-[260px] w-full object-cover transition duration-500 hover:scale-105 md:h-[250px]"
+                />
+              </figure>
+            </div>
+
+            <button
+              type="button"
+              aria-label="Próxima imagem"
+              class="absolute right-0 top-1/2 z-10 hidden h-11 w-11 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-kaffee-cream text-kaffee-brown shadow-md transition hover:bg-kaffee-caramel/20 md:flex"
+            >
+              <i class="fa-solid fa-chevron-right text-[13px]"></i>
+            </button>
+          </div>
+
+          <div class="mt-6 flex items-center justify-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-kaffee-brown"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-kaffee-caramel/30"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-kaffee-caramel/30"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-kaffee-caramel/30"></span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="border-t border-kaffee-caramel/25 bg-kaffee-caramel/10 px-6 py-14 text-center"
+    >
+      <div class="flex items-center justify-center gap-3">
+        <a
+          href="#"
+          aria-label="YouTube"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-youtube text-[18px]"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="Instagram"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-instagram text-[18px]"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="WhatsApp"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-whatsapp text-[18px]"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="Pinterest"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-pinterest-p text-[18px]"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="Facebook"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-facebook-f text-[18px]"></i>
+        </a>
+
+        <a
+          href="mailto:contato@studiokaffee.com"
+          aria-label="Email"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-regular fa-envelope text-[18px]"></i>
+        </a>
+      </div>
+
+      <p
+        class="mt-7 font-sans text-[11px] font-medium uppercase tracking-[0.08em] text-kaffee-brown"
+      >
+        Studio Kaffee • Santo André - SP
+      </p>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
