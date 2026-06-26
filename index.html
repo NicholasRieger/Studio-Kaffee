@@ -45,21 +45,27 @@
               class="flex items-center gap-7 font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-kaffee-brown 2xl:gap-12 2xl:text-[13px]"
             >
               <li>
-                <a
-                  href="agenda.html"
-                  class="transition hover:text-kaffee-caramel"
+                <a href="agenda.html" class="nav-link hover:text-kaffee-caramel"
                   >Agenda</a
                 >
               </li>
               <li>
-                <a
-                  href="studio.html"
-                  class="transition hover:text-kaffee-caramel"
+                <a href="studio.html" class="nav-link hover:text-kaffee-caramel"
                   >Studio</a
                 >
               </li>
+
               <li>
-                <a href="#faq" class="transition hover:text-kaffee-caramel"
+                <a
+                  href="sobre-mim.html"
+                  class="nav-link hover:text-kaffee-caramel"
+                >
+                  Sobre mim
+                </a>
+              </li>
+
+              <li>
+                <a href="faq.html" class="nav-link hover:text-kaffee-caramel"
                   >FAQ</a
                 >
               </li>
@@ -113,29 +119,52 @@
       <!-- Menu Mobile -->
       <div
         id="mobileMenu"
-        class="pointer-events-none fixed inset-0 z-40 flex translate-y-[-12px] flex-col justify-center bg-kaffee-cream/95 px-8 opacity-0 backdrop-blur-md transition-all duration-300 2xl:hidden"
+        class="pointer-events-none fixed inset-0 z-40 flex translate-y-[-12px] flex-col justify-center bg-kaffee-cream/95 px-8 opacity-0 backdrop-blur-md transition-all duration-300 xl:hidden"
       >
         <nav>
           <ul
-            class="flex items-center gap-7 font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-kaffee-brown 2xl:gap-12 2xl:text-[13px]"
+            class="space-y-8 text-center font-sans text-[15px] font-medium uppercase tracking-[0.28em] text-kaffee-brown"
           >
             <li>
               <a
-                href="./agenda.html#agenda"
-                class="nav-link hover:text-kaffee-caramel"
+                href="./index.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="agenda.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
               >
                 Agenda
               </a>
             </li>
-
             <li>
-              <a href="sobre.html" class="nav-link hover:text-kaffee-caramel">
-                Sobre
+              <a
+                href="studio.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Studio
               </a>
             </li>
 
             <li>
-              <a href="faq.html" class="nav-link hover:text-kaffee-caramel">
+              <a
+                href="sobre-mim.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Sobre mim
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="faq.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
                 FAQ
               </a>
             </li>

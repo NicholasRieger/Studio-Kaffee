@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/output.css" />
+    <title>FAQ | Studio Kaffee</title>
+
+    <link
+      rel="shortcut icon"
+      href="ChatGPT_Image_15_de_jun._de_2026__20_12_13-removebg-preview.png"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+
+  <body class="bg-kaffee-cream font-sans text-kaffee-brown">
+    <!-- Header -->
+    <header
+      class="relative z-50 border-b border-kaffee-caramel/25 bg-kaffee-cream"
+    >
+      <div
+        class="flex h-20 w-full items-center justify-between px-6 py-6 lg:px-12 xl:px-20 xl:py-12"
+      >
+        <!-- Logo -->
+        <a href="./index.html" class="relative z-50 text-kaffee-brown">
+          <div class="flex flex-col leading-none">
+            <span
+              class="font-brand text-[42px] font-normal leading-[0.75] tracking-[-0.04em]"
+            >
+              kaffee
+            </span>
+
+            <span
+              class="mt-1 text-center font-sans text-[10px] font-semibold uppercase tracking-[0.2em]"
+            >
+              estúdio
+            </span>
+          </div>
+        </a>
+
+        <!-- Menu Desktop -->
+        <div class="hidden items-center gap-[120px] lg:gap-[168px] xl:flex">
+          <nav>
+            <ul
+              class="flex items-center gap-7 font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-kaffee-brown 2xl:gap-12 2xl:text-[13px]"
+            >
+              <li>
+                <a
+                  href="./index.html"
+                  class="nav-link hover:text-kaffee-caramel"
+                >
+                  Home
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="./agenda.html"
+                  class="nav-link hover:text-kaffee-caramel"
+                >
+                  Agenda
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="studio.html"
+                  class="nav-link hover:text-kaffee-caramel"
+                >
+                  Studio
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="sobre-mim.html"
+                  class="nav-link hover:text-kaffee-caramel"
+                >
+                  Sobre mim
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="faq.html"
+                  class="nav-link active hover:text-kaffee-caramel"
+                >
+                  FAQ
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <a
+            href="./agenda.html#agenda"
+            class="flex items-center gap-2 rounded-[3px] bg-kaffee-brown px-5 py-3 font-sans text-[12px] font-bold uppercase tracking-[0.12em] text-kaffee-cream shadow-md transition hover:bg-kaffee-earth"
+          >
+            <i class="fa-brands fa-whatsapp text-[15px]"></i>
+            Agendar Ensaio
+          </a>
+        </div>
+
+        <!-- Botão Mobile -->
+        <button
+          id="menuButton"
+          class="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 xl:hidden"
+          type="button"
+          aria-label="Abrir menu"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+        >
+          <span
+            class="menu-line block h-px w-7 bg-kaffee-brown transition duration-300"
+          ></span>
+          <span
+            class="menu-line block h-px w-7 bg-kaffee-brown transition duration-300"
+          ></span>
+          <span
+            class="menu-line block h-px w-7 bg-kaffee-brown transition duration-300"
+          ></span>
+        </button>
+      </div>
+
+      <!-- Menu Mobile -->
+      <div
+        id="mobileMenu"
+        class="pointer-events-none fixed inset-0 z-40 flex translate-y-[-12px] flex-col justify-center bg-kaffee-cream/95 px-8 opacity-0 backdrop-blur-md transition-all duration-300 xl:hidden"
+      >
+        <nav class="text-center">
+          <ul
+            class="space-y-7 font-sans text-[13px] font-semibold uppercase tracking-[0.22em] text-kaffee-brown"
+          >
+            <li>
+              <a
+                href="./index.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="./agenda.html#agenda"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Agenda
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="studio.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Studio
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="sobre-mim.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Sobre mim
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="faq.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                FAQ
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <a
+          href="./agenda.html#agenda"
+          class="mobile-link mx-auto mt-12 inline-flex items-center justify-center rounded-[3px] bg-kaffee-brown px-6 py-4 font-sans text-[12px] font-bold uppercase tracking-[0.16em] text-kaffee-cream shadow-md transition hover:bg-kaffee-earth"
+        >
+          Agendar Ensaio
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero FAQ -->
+      <section
+        class="relative flex min-h-[420px] items-center justify-center overflow-hidden bg-kaffee-cream bg-cover bg-center md:min-h-[520px]"
+        style="
+          background-image:
+            linear-gradient(rgba(109, 57, 20, 0.38), rgba(109, 57, 20, 0.38)),
+            url('./assets/hero-kaffee.png');
+        "
+      >
+        <div class="relative z-10 px-6 text-center text-kaffee-cream">
+          <h1
+            class="font-logo text-[78px] font-normal leading-none tracking-[-0.06em] md:text-[118px]"
+          >
+            FAQ
+          </h1>
+        </div>
+      </section>
+
+      <!-- FAQ Intro -->
+      <section class="bg-kaffee-cream px-6 py-16 text-center md:py-20">
+        <h2
+          class="mx-auto max-w-[760px] font-logo text-[44px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[62px]"
+        >
+          Tudo o que você precisa saber antes da sua reserva
+        </h2>
+
+        <p
+          class="mx-auto mt-7 max-w-[620px] font-sans text-[14px] leading-[1.9] text-kaffee-earth md:text-[15px]"
+        >
+          As principais dúvidas sobre reserva, pagamento, horários,
+          estrutura e uso do Studio Kaffee para que sua experiência seja leve
+          desde o primeiro contato.
+        </p>
+      </section>
+
+      <!-- FAQ com imagens -->
+      <section class="bg-kaffee-caramel/10 px-6 py-16 md:py-24 lg:px-12 xl:px-20">
+        <div class="mx-auto max-w-[1180px]">
+          <!-- Item 1 -->
+          <article
+            class="grid items-center gap-10 border-b border-kaffee-caramel/25 pb-14 md:grid-cols-[0.85fr_1.15fr] md:gap-16"
+          >
+            <figure class="overflow-hidden bg-kaffee-caramel/10">
+              <img
+                src="./assets/faq-reserva.jpg"
+                alt="Detalhe do Studio Kaffee com café e decoração"
+                class="h-[260px] w-full object-cover md:h-[320px]"
+              />
+            </figure>
+
+            <div>
+              <p
+                class="font-sans text-[15px] font-bold uppercase tracking-[0.2em] text-kaffee-brown"
+              >
+                Sobre reserva e pagamento
+              </p>
+
+              <div
+                class="mt-8 space-y-5 font-sans text-[14px] md:text-[14.5px] leading-[1.95] text-kaffee-earth"
+              >
+                <p>
+                  O valor é pago no ato do agendamento. Escolha a data pelo
+                  WhatsApp ou direct do Instagram e, antes do ensaio, envie o
+                  comprovante para reservar a data na agenda do estúdio.
+                </p>
+
+                <p>
+                  As reservas são realizadas com base em pacotes predefinidos.
+                  Para garantir a exclusividade da data, é solicitado o
+                  pagamento antecipado de 50% do valor total, com o restante a
+                  ser quitado até o dia anterior à locação.
+                </p>
+
+                <p>
+                  Também é possível realizar o pagamento integral no momento da
+                  reserva. Apenas após o envio do comprovante a data será
+                  confirmada; caso contrário, ela permanecerá disponível para
+                  outros agendamentos.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 2 -->
+          <article
+            class="grid items-center gap-10 border-b border-kaffee-caramel/25 py-14 md:grid-cols-[0.85fr_1.15fr] md:gap-16"
+          >
+            <figure class="overflow-hidden bg-kaffee-caramel/10">
+              <img
+                src="./assets/faq-atraso.jpg"
+                alt="Mesa com xícaras e objetos decorativos"
+                class="h-[260px] w-full object-cover md:h-[320px]"
+              />
+            </figure>
+
+            <div>
+              <p
+                class="font-sans text-[13px] font-bold uppercase tracking-[0.2em] text-kaffee-brown"
+              >
+                Caso eu chegue depois do meu horário, será estendido meu
+                momento?
+              </p>
+
+              <p
+                class="mt-8 font-sans text-[14px] md:text-[14.5px] leading-[1.95] text-kaffee-earth"
+              >
+                Por respeito a todos os clientes que cumprem o horário, não
+                estendemos seu horário caso você chegue depois do combinado na
+                sua reserva. Caso passe do seu horário por alguma razão, será
+                calculado o valor extra a ser pago.
+              </p>
+            </div>
+          </article>
+
+          <!-- Item 3 -->
+          <article
+            class="grid items-center gap-10 py-14 md:grid-cols-[0.85fr_1.15fr] md:gap-16"
+          >
+            <figure class="overflow-hidden bg-kaffee-caramel/10">
+              <img
+                src="./assets/faq-estacionamento.jpg"
+                alt="Ambiente do Studio Kaffee com mesa, cadeira e espelho"
+                class="h-[260px] w-full object-cover md:h-[320px]"
+              />
+            </figure>
+
+            <div>
+              <p
+                class="font-sans text-[13px] font-bold uppercase tracking-[0.2em] text-kaffee-brown"
+              >
+                Tem estacionamento?
+              </p>
+
+              <p
+                class="mt-8 font-sans text-[14px] md:text-[14.5px] leading-[1.95] text-kaffee-earth"
+              >
+                No prédio tem estacionamento, porém é pago. Por isso,
+                recomendamos estacionar na própria rua do prédio ou nas ruas
+                adjacentes.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- FAQ extra -->
+      <section class="bg-kaffee-cream px-6 py-16 md:py-24 lg:px-12 xl:px-20">
+        <div class="mx-auto max-w-[980px]">
+          <div class="mb-14 text-center">
+            <p
+              class="mb-4 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-kaffee-earth"
+            >
+              Regras do espaço
+            </p>
+
+            <h2
+              class="font-logo text-[44px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[58px]"
+            >
+              Cuidados durante a locação
+            </h2>
+
+            <div class="mx-auto mt-6 h-px w-14 bg-kaffee-caramel"></div>
+          </div>
+
+          <div class="space-y-8">
+            <!-- Item 4 -->
+            <article
+              class="border border-kaffee-caramel/30 bg-kaffee-caramel/10 px-7 py-8 md:px-10 md:py-10"
+            >
+              <p
+                class="font-sans text-[13px] font-bold uppercase tracking-[0.2em] text-kaffee-brown"
+              >
+                Vocês aceitam pet?
+              </p>
+
+              <p
+                class="mt-6 font-sans text-[14px] md:text-[14.5px] leading-[1.95] text-kaffee-earth"
+              >
+                Sim, mediante uma taxa extra de R$250. Só aceitamos pets de
+                pequeno porte, que podem chegar e sair no colo, conforme normas
+                do prédio.
+              </p>
+            </article>
+
+            <!-- Item 5 -->
+            <article
+              class="border border-kaffee-caramel/30 bg-kaffee-caramel/10 px-7 py-8 md:px-10 md:py-10"
+            >
+              <p
+                class="font-sans text-[13px] font-bold uppercase tracking-[0.2em] text-kaffee-brown"
+              >
+                Quantas pessoas são permitidas?
+              </p>
+
+              <p
+                class="mt-6 font-sans text-[14px] md:text-[14.5px] leading-[1.95] text-kaffee-earth"
+              >
+                Os valores que constam na proposta englobam equipes de até 5
+                pessoas. Para além disso, será cobrada uma taxa de R$80 por cada
+                pessoa extra.
+              </p>
+            </article>
+
+            <!-- Item 6 -->
+            <article
+              class="border border-kaffee-caramel/30 bg-kaffee-caramel/10 px-7 py-8 md:px-10 md:py-10"
+            >
+              <p
+                class="font-sans text-[13px] font-bold uppercase tracking-[0.2em] text-kaffee-brown"
+              >
+                O que acontece se algo quebrar ou estragar?
+              </p>
+
+              <p
+                class="mt-6 font-sans text-[14px] md:text-[14.5px] leading-[1.95] text-kaffee-earth"
+              >
+                Você encontrará tudo no espaço funcionando em perfeito estado.
+                Sempre fazemos manutenções e cuidamos de tudo com muito carinho;
+                esperamos que também faça o mesmo. Caso aconteça algum dano ao
+                espaço, mobiliário ou equipamento, ele será de responsabilidade
+                do locatário.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="bg-kaffee-caramel/10 px-6 py-16 text-center">
+        <p
+          class="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-kaffee-earth"
+        >
+          Ainda tem dúvidas?
+        </p>
+
+        <h2
+          class="mx-auto mt-4 max-w-[680px] font-logo text-[42px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[56px]"
+        >
+          Entre em contato antes de reservar
+        </h2>
+
+        <a
+          href="./agenda.html#agenda"
+          class="mt-9 inline-flex items-center justify-center gap-2 bg-kaffee-brown px-7 py-4 font-sans text-[12px] font-bold uppercase tracking-[0.14em] text-kaffee-cream shadow-md transition hover:bg-kaffee-earth"
+        >
+          <i class="fa-brands fa-whatsapp text-[16px]"></i>
+          Agendar ensaio
+        </a>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="border-t border-kaffee-caramel/25 bg-kaffee-caramel/10 px-6 py-14 text-center"
+    >
+      <div class="flex items-center justify-center gap-3">
+        <a
+          href="#"
+          aria-label="YouTube"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-youtube text-[18px]"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="Instagram"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-instagram text-[18px]"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="WhatsApp"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-whatsapp text-[18px]"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="Pinterest"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-pinterest-p text-[18px]"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="Facebook"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-facebook-f text-[18px]"></i>
+        </a>
+
+        <a
+          href="mailto:contato@studiokaffee.com"
+          aria-label="Email"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-regular fa-envelope text-[18px]"></i>
+        </a>
+      </div>
+
+      <p
+        class="mt-7 font-sans text-[11px] font-medium uppercase tracking-[0.08em] text-kaffee-brown"
+      >
+        Studio Kaffee • Santo André - SP
+      </p>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
