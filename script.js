@@ -838,8 +838,6 @@ function renderCalendar() {
 }
 
 function renderMobileAgendaList(monthDays) {
-  const exceptionDays = monthDays.filter((item) => item.isException);
-
   const availableDays = monthDays.filter((item) => {
     return normalizeText(item.status) === "livre" && !isPastDate(item.date);
   });
@@ -847,13 +845,13 @@ function renderMobileAgendaList(monthDays) {
   agendaList.insertAdjacentHTML(
     "beforeend",
     `
-      <div class="bg-kaffee-caramel/10 px-5 py-5">
+      <div class="bg-kaffee-caramel/10 px-4 py-5">
         <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-kaffee-brown">
-          Resumo da agenda
+          Solicitar reserva
         </p>
 
-        <p class="mt-2 font-sans text-[13px] leading-[1.7] text-kaffee-earth">
-          Dias não listados abaixo seguem como <strong>Livre</strong>, das 9h às 18h.
+        <p class="mt-2 font-sans text-[12px] leading-[1.7] text-kaffee-earth">
+          Consulte a disponibilidade no calendário acima e selecione um dia para escolher o horário.
         </p>
 
         <div class="mt-5">
@@ -861,7 +859,7 @@ function renderMobileAgendaList(monthDays) {
             for="mobileBookingDaySelect"
             class="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-kaffee-brown"
           >
-            Escolha um dia para solicitar reserva
+            Escolha um dia disponível
           </label>
 
           <select
@@ -895,7 +893,7 @@ function renderMobileAgendaList(monthDays) {
           <button
             id="mobileBookingDayButton"
             type="button"
-            class="mt-3 flex w-full items-center justify-center gap-2 bg-kaffee-brown px-5 py-3 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-kaffee-cream shadow-md transition hover:bg-[#61300d]"
+            class="mt-3 flex w-full cursor-pointer items-center justify-center gap-2 bg-kaffee-brown px-5 py-3 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-kaffee-cream shadow-md transition hover:bg-[#61300d]"
           >
             Selecionar horário
           </button>
@@ -923,87 +921,6 @@ function renderMobileAgendaList(monthDays) {
       openBookingModal(dayItem);
     }
   });
-
-  if (exceptionDays.length === 0) {
-    agendaList.insertAdjacentHTML(
-      "beforeend",
-      `
-        <div class="px-5 py-6 text-center font-sans text-[13px] leading-[1.7] text-kaffee-earth">
-          Nenhuma alteração cadastrada para este mês.
-        </div>
-      `,
-    );
-
-    return;
-  }
-
-  exceptionDays.forEach((item) => {
-    const day = String(item.date.getDate()).padStart(2, "0");
-    const monthNumber = String(item.date.getMonth() + 1).padStart(2, "0");
-    const classes = getStatusClasses(item.status);
-    const isClickable =
-      normalizeText(item.status) === "livre" && !isPastDate(item.date);
-
-    agendaList.insertAdjacentHTML(
-      "beforeend",
-      `
-        <article class="px-5 py-5">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="font-sans text-[13px] font-bold uppercase tracking-[0.16em] text-kaffee-brown">
-                ${day}/${monthNumber}
-              </p>
-
-              <p class="mt-2 font-sans text-[14px] leading-[1.6] text-kaffee-earth">
-                ${escapeHTML(item.horario)}
-              </p>
-
-              ${
-                item.observacao
-                  ? `
-                    <p class="mt-2 font-sans text-[12px] leading-[1.6] text-kaffee-earth">
-                      ${escapeHTML(item.observacao)}
-                    </p>
-                  `
-                  : ""
-              }
-
-              ${
-                isClickable
-                  ? `
-                    <button
-                      type="button"
-                      data-mobile-booking-date="${item.dateKey}"
-                      class="mt-4 inline-flex items-center justify-center border border-kaffee-brown px-4 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-kaffee-brown transition hover:bg-kaffee-brown hover:text-kaffee-cream"
-                    >
-                      Escolher horário
-                    </button>
-                  `
-                  : ""
-              }
-            </div>
-
-            <span class="shrink-0 rounded-full px-3 py-1 font-sans text-[10px] font-bold uppercase tracking-[0.12em] ${classes.badge}">
-              ${escapeHTML(item.status)}
-            </span>
-          </div>
-        </article>
-      `,
-    );
-  });
-
-  agendaList
-    .querySelectorAll("[data-mobile-booking-date]")
-    .forEach((button) => {
-      button.addEventListener("click", () => {
-        const dateKey = button.getAttribute("data-mobile-booking-date");
-        const dayItem = monthDays.find((item) => item.dateKey === dateKey);
-
-        if (dayItem) {
-          openBookingModal(dayItem);
-        }
-      });
-    });
 }
 
 function showAgendaError(message = "Agenda indisponível") {

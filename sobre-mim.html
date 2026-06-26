@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/output.css" />
+    <title>Sobre Mim | Studio Kaffee</title>
+
+    <link
+      rel="shortcut icon"
+      href="ChatGPT_Image_15_de_jun._de_2026__20_12_13-removebg-preview.png"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+
+  <body class="bg-kaffee-cream font-sans text-kaffee-brown">
+    <!-- Header -->
+    <header
+      class="relative z-50 border-b border-kaffee-caramel/25 bg-kaffee-cream"
+    >
+      <div
+        class="flex h-20 w-full items-center justify-between px-6 py-6 lg:px-12 xl:px-20 xl:py-12"
+      >
+        <!-- Logo -->
+        <a href="./index.html" class="relative z-50 text-kaffee-brown">
+          <div class="flex flex-col leading-none">
+            <span
+              class="font-brand text-[42px] font-normal leading-[0.75] tracking-[-0.04em]"
+            >
+              kaffee
+            </span>
+
+            <span
+              class="mt-1 text-center font-sans text-[10px] font-semibold uppercase tracking-[0.2em]"
+            >
+              estúdio
+            </span>
+          </div>
+        </a>
+
+        <!-- Menu Desktop -->
+        <div class="hidden items-center gap-[120px] lg:gap-[168px] xl:flex">
+          <nav>
+            <ul
+              class="flex items-center gap-7 font-sans text-[12px] font-semibold uppercase tracking-[0.2em] text-kaffee-brown 2xl:gap-12 2xl:text-[13px]"
+            >
+              <li>
+                <a
+                  href="./index.html"
+                  class="nav-link hover:text-kaffee-caramel"
+                >
+                  Home
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="./agenda.html"
+                  class="nav-link hover:text-kaffee-caramel"
+                >
+                  Agenda
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="studio.html"
+                  class="nav-link hover:text-kaffee-caramel"
+                >
+                  Studio
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="sobre-mim.html"
+                  class="nav-link active hover:text-kaffee-caramel"
+                >
+                  Sobre mim
+                </a>
+              </li>
+
+              <li>
+                <a href="faq.html" class="nav-link hover:text-kaffee-caramel">
+                  FAQ
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <a
+            href="./agenda.html#agenda"
+            class="flex items-center gap-2 rounded-[3px] bg-kaffee-brown px-5 py-3 font-sans text-[12px] font-bold uppercase tracking-[0.12em] text-kaffee-cream shadow-md transition hover:bg-kaffee-earth"
+          >
+            <i class="fa-brands fa-whatsapp text-[15px]"></i>
+            Agendar Ensaio
+          </a>
+        </div>
+
+        <!-- Botão Mobile -->
+        <button
+          id="menuButton"
+          class="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 xl:hidden"
+          type="button"
+          aria-label="Abrir menu"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+        >
+          <span
+            class="menu-line block h-px w-7 bg-kaffee-brown transition duration-300"
+          ></span>
+          <span
+            class="menu-line block h-px w-7 bg-kaffee-brown transition duration-300"
+          ></span>
+          <span
+            class="menu-line block h-px w-7 bg-kaffee-brown transition duration-300"
+          ></span>
+        </button>
+      </div>
+
+      <!-- Menu Mobile -->
+      <div
+        id="mobileMenu"
+        class="pointer-events-none fixed inset-0 z-40 flex translate-y-[-12px] flex-col justify-center bg-kaffee-cream/95 px-8 opacity-0 backdrop-blur-md transition-all duration-300 xl:hidden"
+      >
+        <nav class="text-center">
+          <ul
+            class="space-y-7 font-sans text-[13px] font-semibold uppercase tracking-[0.22em] text-kaffee-brown"
+          >
+            <li>
+              <a
+                href="./index.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="./agenda.html#agenda"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Agenda
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="studio.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Studio
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="sobre-mim.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                Sobre mim
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="faq.html"
+                class="mobile-link block transition hover:text-kaffee-caramel"
+              >
+                FAQ
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <a
+          href="./agenda.html#agenda"
+          class="mobile-link mx-auto mt-12 inline-flex items-center justify-center rounded-[3px] bg-kaffee-brown px-6 py-4 font-sans text-[12px] font-bold uppercase tracking-[0.16em] text-kaffee-cream shadow-md transition hover:bg-kaffee-earth"
+        >
+          Agendar Ensaio
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Sobre mim / Hero -->
+      <section
+        class="relative flex min-h-[620px] items-center overflow-hidden bg-kaffee-cream bg-cover bg-center md:min-h-[720px]"
+        style="
+          background-image:
+            linear-gradient(
+              90deg,
+              rgba(244, 234, 222, 0.96) 0%,
+              rgba(244, 234, 222, 0.88) 28%,
+              rgba(244, 234, 222, 0.42) 48%,
+              rgba(244, 234, 222, 0.05) 72%
+            ),
+            url(&quot;./assets/sobre-mim-hero.png&quot;);
+          background-position: center right;
+        "
+      >
+        <div class="relative z-10 w-full px-6 md:px-10 lg:px-16 xl:px-20">
+          <div class="mx-auto max-w-[1320px]">
+            <div class="max-w-[520px]">
+
+              <h1
+                class="font-logo text-[52px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[68px]"
+              >
+                Oi, eu sou a Agnes.
+              </h1>
+
+              <div
+                class="mt-10 space-y-7 font-sans text-[15px] leading-[2] text-kaffee-earth"
+              >
+                <p>
+                  Fotógrafa, maquiadora e StoryMaker apaixonada por criar
+                  experiências através da imagem e das histórias que cada pessoa
+                  carrega.
+                </p>
+
+                <p>
+                  Acredito que fotografia vai muito além de cliques. É conexão,
+                  é presença, é sobre revelar o que torna cada história única.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEGUNDA SEÇÃO -->
+      <section
+        class="bg-[#fcfaf7] px-6 py-16 md:px-10 lg:px-16 lg:py-20 xl:px-20"
+      >
+        <div
+          class="mx-auto grid max-w-[1320px] items-center gap-12 xl:grid-cols-[1fr_0.9fr] xl:gap-16"
+        >
+          <!-- Imagem -->
+          <div class="overflow-hidden">
+            <img
+              src="./assets/sobre-mim-kaffee.jpg"
+              alt="Espaço do Studio Kaffee"
+              class="block h-full w-full scale-[1.01] object-cover object-center"
+            />
+          </div>
+
+          <!-- Texto -->
+          <div class="max-w-[520px]">
+            <p
+              class="mb-7 font-sans text-[11px] font-semibold uppercase tracking-[0.32em] text-kaffee-brown"
+            >
+              Como nasceu o Kaffee
+            </p>
+
+            <h2
+              class="font-logo text-[42px] leading-[1.2] tracking-[-0.04em] text-kaffee-brown md:text-[54px]"
+            >
+              O Kaffee nasceu de dois amores que sempre caminharam comigo: a
+              fotografia e os cafés.
+            </h2>
+
+            <div
+              class="mt-8 space-y-7 font-sans text-[15px] leading-[2] text-kaffee-earth"
+            >
+              <p>
+                Queria criar um espaço que tivesse alma, que acolhesse,
+                inspirasse e fizesse com que cada produção se tornasse uma
+                experiência leve e especial.
+              </p>
+
+              <p>
+                Assim nasceu o Kaffee: um estúdio pensado com carinho, onde cada
+                detalhe foi escolhido para transformar ideias em imagens e
+                momentos em memórias.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="border-t border-kaffee-caramel/25 bg-kaffee-caramel/10 px-6 py-14 text-center"
+    >
+      <div class="flex items-center justify-center gap-3">
+        <a
+          href="https://www.youtube.com/@agnesrieger"
+          target="_blank"
+          aria-label="YouTube"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-youtube text-[18px]"></i>
+        </a>
+
+        <a
+          href="https://www.instagram.com/studiokaffee/"
+          target="_blank"
+          aria-label="Instagram"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-instagram text-[18px]"></i>
+        </a>
+
+        <a
+          href="https://wa.me/5511978981727"
+          target="_blank"
+          aria-label="WhatsApp"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-whatsapp text-[18px]"></i>
+        </a>
+
+        <a
+          href="https://www.pinterest.com/studiokaffee/"
+          target="_blank"
+          aria-label="Pinterest"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-pinterest-p text-[18px]"></i>
+        </a>
+
+        <a
+          href="https://www.facebook.com/studiokaffee/"
+          target="_blank"
+          aria-label="Facebook"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-brands fa-facebook-f text-[18px]"></i>
+        </a>
+
+        <a
+          href="mailto:contato@studiokaffee.com"
+          target="_blank"
+          aria-label="Email"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
+        >
+          <i class="fa-regular fa-envelope text-[18px]"></i>
+        </a>
+      </div>
+
+      <p
+        class="mt-7 font-sans text-[11px] font-medium uppercase tracking-[0.08em] text-kaffee-brown"
+      >
+        Studio Kaffee • Santo André - SP
+      </p>
+
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

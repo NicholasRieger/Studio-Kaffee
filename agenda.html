@@ -205,11 +205,11 @@
       </section>
 
       <!-- Agenda / Funcionamento -->
-      <section id="agenda" class="bg-kaffee-cream px-6 pb-14 pt-10">
+      <section id="agenda" class="bg-kaffee-cream px-4 pb-14 pt-10 md:px-6">
         <div
           class="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[1.15fr_0.85fr]"
         >
-          <!-- Calendário fake / layout -->
+          <!-- Calendário / layout -->
           <div>
             <div class="mb-8">
               <p
@@ -230,68 +230,72 @@
             >
               <!-- topo calendário -->
               <div
-                class="flex items-center justify-between border-b border-kaffee-caramel/30 px-5 py-4"
+                class="flex items-center justify-between gap-3 border-b border-kaffee-caramel/30 px-3 py-3 md:px-5 md:py-4"
               >
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 md:gap-3">
                   <button
                     id="prevMonth"
-                    class="flex h-9 w-9 items-center justify-center border border-kaffee-caramel/40 text-kaffee-brown transition hover:bg-kaffee-caramel/20"
+                    class="flex h-8 w-8 cursor-pointer items-center justify-center border border-kaffee-caramel/40 text-kaffee-brown transition hover:bg-kaffee-caramel/20 md:h-9 md:w-9"
                     type="button"
                     aria-label="Mês anterior"
                   >
-                    <i class="fa-solid fa-chevron-left text-[12px]"></i>
+                    <i
+                      class="fa-solid fa-chevron-left text-[11px] md:text-[12px]"
+                    ></i>
                   </button>
 
                   <button
                     id="nextMonth"
-                    class="flex h-9 w-9 items-center justify-center border border-kaffee-caramel/40 text-kaffee-brown transition hover:bg-kaffee-caramel/20"
+                    class="flex h-8 w-8 cursor-pointer items-center justify-center border border-kaffee-caramel/40 text-kaffee-brown transition hover:bg-kaffee-caramel/20 md:h-9 md:w-9"
                     type="button"
                     aria-label="Próximo mês"
                   >
-                    <i class="fa-solid fa-chevron-right text-[12px]"></i>
+                    <i
+                      class="fa-solid fa-chevron-right text-[11px] md:text-[12px]"
+                    ></i>
                   </button>
                 </div>
 
                 <h3
                   id="calendarTitle"
-                  class="font-sans text-[13px] font-semibold uppercase tracking-[0.22em] text-kaffee-brown"
+                  class="text-center font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-kaffee-brown md:text-[13px] md:tracking-[0.22em]"
                 >
                   Carregando...
                 </h3>
 
                 <button
                   id="todayButton"
-                  class="border border-kaffee-brown px-4 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-kaffee-brown transition hover:bg-kaffee-brown hover:text-kaffee-cream"
+                  class="cursor-pointer border border-kaffee-brown px-3 py-2 font-sans text-[9px] font-semibold uppercase tracking-[0.14em] text-kaffee-brown transition hover:bg-kaffee-brown hover:text-kaffee-cream md:px-4 md:text-[10px] md:tracking-[0.16em]"
                   type="button"
                 >
                   Hoje
                 </button>
               </div>
 
-              <!-- Calendário desktop/tablet -->
-              <div class="hidden md:block">
+              <!-- Calendário desktop e mobile reduzido -->
+              <div class="block">
                 <div
-                  class="grid grid-cols-7 border-b border-kaffee-caramel/30 text-center font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-kaffee-brown"
+                  class="grid grid-cols-7 border-b border-kaffee-caramel/30 text-center font-sans text-[8px] font-semibold uppercase tracking-[0.12em] text-kaffee-brown md:text-[10px] md:tracking-[0.16em]"
                 >
-                  <div class="py-3">Seg</div>
-                  <div class="py-3">Ter</div>
-                  <div class="py-3">Qua</div>
-                  <div class="py-3">Qui</div>
-                  <div class="py-3">Sex</div>
-                  <div class="py-3">Sáb</div>
-                  <div class="py-3">Dom</div>
+                  <div class="py-2 md:py-3">Seg</div>
+                  <div class="py-2 md:py-3">Ter</div>
+                  <div class="py-2 md:py-3">Qua</div>
+                  <div class="py-2 md:py-3">Qui</div>
+                  <div class="py-2 md:py-3">Sex</div>
+                  <div class="py-2 md:py-3">Sáb</div>
+                  <div class="py-2 md:py-3">Dom</div>
                 </div>
 
                 <div
                   id="calendarGrid"
-                  class="grid grid-cols-7 text-kaffee-brown"
+                  class="pointer-events-none grid grid-cols-7 text-kaffee-brown md:pointer-events-auto [&>*]:!min-h-[74px] [&>*]:!p-1.5 md:[&>*]:!min-h-[106px] md:[&>*]:!p-3 [&>button>p:first-child]:!text-[12px] md:[&>button>p:first-child]:!text-[18px] [&>button>p:nth-child(2)]:!mt-2 [&>button>p:nth-child(2)]:!text-[8.5px] [&>button>p:nth-child(2)]:!leading-[1.25] md:[&>button>p:nth-child(2)]:!text-[12px] md:[&>button>p:nth-child(2)]:!leading-[1.45]"
                 ></div>
               </div>
 
-              <!-- Lista mobile: mostra apenas dias com alterações -->
+              <!-- Agendamento mobile -->
               <div
                 id="agendaList"
-                class="divide-y divide-kaffee-caramel/20 md:hidden"
+                class="border-t border-kaffee-caramel/30 md:hidden"
               ></div>
 
               <!-- legenda -->
@@ -769,7 +773,7 @@
             id="closeBookingModal"
             type="button"
             aria-label="Fechar modal"
-            class="flex h-9 w-9 shrink-0 items-center justify-center border border-kaffee-caramel/40 text-kaffee-brown transition hover:bg-kaffee-caramel/20 cursor-pointer"
+            class="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center border border-kaffee-caramel/40 text-kaffee-brown transition hover:bg-kaffee-caramel/20"
           >
             <i class="fa-solid fa-xmark text-[15px]"></i>
           </button>
@@ -864,49 +868,55 @@
     >
       <div class="flex items-center justify-center gap-3">
         <a
-          href="#"
+          href="https://www.youtube.com/@agnesrieger"
+          target="_blank"
           aria-label="YouTube"
-          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:bg-[#ae8150] hover:shadow-md"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
         >
           <i class="fa-brands fa-youtube text-[18px]"></i>
         </a>
 
         <a
-          href="#"
+          href="https://www.instagram.com/studiokaffee/"
+          target="_blank"
           aria-label="Instagram"
-          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:bg-[#ae8150] hover:shadow-md"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
         >
           <i class="fa-brands fa-instagram text-[18px]"></i>
         </a>
 
         <a
-          href="#"
+          href="https://wa.me/5511978981727"
+          target="_blank"
           aria-label="WhatsApp"
-          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:bg-[#ae8150] hover:shadow-md"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
         >
           <i class="fa-brands fa-whatsapp text-[18px]"></i>
         </a>
 
         <a
-          href="#"
+          href="https://www.pinterest.com/studiokaffee/"
+          target="_blank"
           aria-label="Pinterest"
-          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:bg-[#ae8150] hover:shadow-md"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
         >
           <i class="fa-brands fa-pinterest-p text-[18px]"></i>
         </a>
 
         <a
-          href="#"
+          href="https://www.facebook.com/studiokaffee/"
+          target="_blank"
           aria-label="Facebook"
-          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:bg-[#ae8150] hover:shadow-md"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
         >
           <i class="fa-brands fa-facebook-f text-[18px]"></i>
         </a>
 
         <a
           href="mailto:contato@studiokaffee.com"
+          target="_blank"
           aria-label="Email"
-          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:bg-[#ae8150] hover:shadow-md"
+          class="flex h-11 w-11 transform items-center justify-center rounded-full bg-kaffee-caramel/70 text-kaffee-cream shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:bg-[#ae8150] hover:shadow-md"
         >
           <i class="fa-regular fa-envelope text-[18px]"></i>
         </a>
