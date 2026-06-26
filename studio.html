@@ -396,37 +396,37 @@
                 <img
                   src="./assets/galeria-estudio-01.jpg"
                   alt="Ambiente do Studio Kaffee"
-                  class="gallery-slide h-[260px] w-[260px] shrink-0 object-cover md:w-[300px]"
+                  class="gallery-slide h-[260px] w-[260px] shrink-0 cursor-pointer object-cover transition duration-300 hover:brightness-90 md:w-[300px]"
                 />
 
                 <img
                   src="./assets/galeria-estudio-02.jpg"
                   alt="Ambiente do Studio Kaffee"
-                  class="gallery-slide h-[260px] w-[260px] shrink-0 object-cover md:w-[300px]"
+                  class="gallery-slide h-[260px] w-[260px] shrink-0 cursor-pointer object-cover transition duration-300 hover:brightness-90 md:w-[300px]"
                 />
 
                 <img
                   src="./assets/galeria-estudio-03.jpg"
                   alt="Ambiente do Studio Kaffee"
-                  class="gallery-slide h-[260px] w-[260px] shrink-0 object-cover md:w-[300px]"
+                  class="gallery-slide h-[260px] w-[260px] shrink-0 cursor-pointer object-cover transition duration-300 hover:brightness-90 md:w-[300px]"
                 />
 
                 <img
                   src="./assets/galeria-estudio-04.jpg"
                   alt="Ambiente do Studio Kaffee"
-                  class="gallery-slide h-[260px] w-[260px] shrink-0 object-cover md:w-[300px]"
+                  class="gallery-slide h-[260px] w-[260px] shrink-0 cursor-pointer object-cover transition duration-300 hover:brightness-90 md:w-[300px]"
                 />
 
                 <img
                   src="./assets/galeria-estudio-05.jpg"
                   alt="Ambiente do Studio Kaffee"
-                  class="gallery-slide h-[260px] w-[260px] shrink-0 object-cover md:w-[300px]"
+                  class="gallery-slide h-[260px] w-[260px] shrink-0 cursor-pointer object-cover transition duration-300 hover:brightness-90 md:w-[300px]"
                 />
 
                 <img
                   src="./assets/galeria-estudio-05.jpg"
                   alt="Ambiente do Studio Kaffee"
-                  class="gallery-slide h-[260px] w-[260px] shrink-0 object-cover md:w-[300px]"
+                  class="gallery-slide h-[260px] w-[260px] shrink-0 cursor-pointer object-cover transition duration-300 hover:brightness-90 md:w-[300px]"
                 />
               </div>
             </div>
@@ -511,7 +511,54 @@
         Studio Kaffee • Santo André - SP
       </p>
     </footer>
+    <!-- Modal / Lightbox da galeria -->
+    <div
+      id="galleryLightbox"
+      class="pointer-events-none fixed inset-0 z-[999] flex items-center justify-center bg-black/55 px-5 py-10 opacity-0 backdrop-blur-sm transition duration-300"
+    >
+      <div
+        id="galleryLightboxPanel"
+        class="relative flex w-full max-w-[920px] items-center justify-center"
+      >
+        <!-- Fechar -->
+        <button
+          id="closeGalleryLightbox"
+          type="button"
+          aria-label="Fechar imagem"
+          class="absolute -top-12 right-0 z-[1000] flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-kaffee-cream/50 bg-kaffee-brown text-kaffee-cream transition hover:bg-kaffee-cream hover:text-kaffee-brown"
+        >
+          <i class="fa-solid fa-xmark text-[16px]"></i>
+        </button>
 
+        <!-- Seta anterior -->
+        <button
+          id="galleryLightboxPrev"
+          type="button"
+          aria-label="Imagem anterior"
+          class="absolute left-3 top-1/2 z-[1000] flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-kaffee-cream text-kaffee-brown shadow-md transition hover:bg-kaffee-brown hover:text-kaffee-cream disabled:cursor-not-allowed disabled:opacity-30 md:-left-16"
+        >
+          <i class="fa-solid fa-chevron-left text-[13px]"></i>
+        </button>
+
+        <!-- Imagem ampliada -->
+        <img
+          id="galleryLightboxImage"
+          src=""
+          alt="Imagem ampliada do Studio Kaffee"
+          class="max-h-[74vh] max-w-full scale-95 object-contain shadow-2xl transition duration-300"
+        />
+
+        <!-- Seta próxima -->
+        <button
+          id="galleryLightboxNext"
+          type="button"
+          aria-label="Próxima imagem"
+          class="absolute right-3 top-1/2 z-[1000] flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-kaffee-cream text-kaffee-brown shadow-md transition hover:bg-kaffee-brown hover:text-kaffee-cream disabled:cursor-not-allowed disabled:opacity-30 md:-right-16"
+        >
+          <i class="fa-solid fa-chevron-right text-[13px]"></i>
+        </button>
+      </div>
+    </div>
     <script src="./script.js"></script>
   </body>
 </html>

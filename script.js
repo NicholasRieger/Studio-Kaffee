@@ -1321,3 +1321,127 @@ window.addEventListener("resize", () => {
 });
 
 updateGalleryCarousel();
+
+// ===============================
+// Lightbox da galeria
+// ===============================
+
+const galleryLightbox = document.querySelector("#galleryLightbox");
+const galleryLightboxPanel = document.querySelector("#galleryLightboxPanel");
+const galleryLightboxImage = document.querySelector("#galleryLightboxImage");
+const closeGalleryLightboxButton = document.querySelector(
+  "#closeGalleryLightbox",
+);
+const galleryLightboxPrev = document.querySelector("#galleryLightboxPrev");
+const galleryLightboxNext = document.querySelector("#galleryLightboxNext");
+
+let galleryLightboxIndex = 0;
+
+function getGalleryImages() {
+  return Array.from(document.querySelectorAll(".gallery-slide"));
+}
+
+function updateGalleryLightboxImage() {
+  const images = getGalleryImages();
+  const currentImage = images[galleryLightboxIndex];
+
+  if (!currentImage || !galleryLightboxImage) return;
+
+  galleryLightboxImage.src = currentImage.src;
+  galleryLightboxImage.alt =
+    currentImage.alt || "Imagem ampliada do Studio Kaffee";
+
+  if (galleryLightboxPrev) {
+    galleryLightboxPrev.disabled = galleryLightboxIndex === 0;
+  }
+
+  if (galleryLightboxNext) {
+    galleryLightboxNext.disabled = galleryLightboxIndex === images.length - 1;
+  }
+}
+
+function openGalleryLightbox(index) {
+  if (!galleryLightbox || !galleryLightboxImage) return;
+
+  galleryLightboxIndex = index;
+  updateGalleryLightboxImage();
+
+  galleryLightbox.classList.remove("pointer-events-none", "opacity-0");
+  galleryLightboxImage.classList.remove("scale-95");
+
+  document.body.classList.add("overflow-hidden");
+}
+
+function closeGalleryLightbox() {
+  if (!galleryLightbox || !galleryLightboxImage) return;
+
+  galleryLightbox.classList.add("pointer-events-none", "opacity-0");
+  galleryLightboxImage.classList.add("scale-95");
+
+  document.body.classList.remove("overflow-hidden");
+
+  setTimeout(() => {
+    galleryLightboxImage.src = "";
+  }, 300);
+}
+
+getGalleryImages().forEach((image, index) => {
+  image.addEventListener("click", () => {
+    openGalleryLightbox(index);
+  });
+});
+
+galleryLightboxPrev?.addEventListener("click", (event) => {
+  event.stopPropagation();
+
+  if (galleryLightboxIndex > 0) {
+    galleryLightboxIndex -= 1;
+    updateGalleryLightboxImage();
+  }
+});
+
+galleryLightboxNext?.addEventListener("click", (event) => {
+  event.stopPropagation();
+
+  const images = getGalleryImages();
+
+  if (galleryLightboxIndex < images.length - 1) {
+    galleryLightboxIndex += 1;
+    updateGalleryLightboxImage();
+  }
+});
+
+closeGalleryLightboxButton?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  closeGalleryLightbox();
+});
+
+galleryLightboxPanel?.addEventListener("click", (event) => {
+  event.stopPropagation();
+});
+
+galleryLightbox?.addEventListener("click", closeGalleryLightbox);
+
+document.addEventListener("keydown", (event) => {
+  if (!galleryLightbox || galleryLightbox.classList.contains("opacity-0")) {
+    return;
+  }
+
+  if (event.key === "Escape") {
+    closeGalleryLightbox();
+  }
+
+  if (event.key === "ArrowLeft" && galleryLightboxIndex > 0) {
+    galleryLightboxIndex -= 1;
+    updateGalleryLightboxImage();
+  }
+
+  if (event.key === "ArrowRight") {
+    const images = getGalleryImages();
+
+    if (galleryLightboxIndex < images.length - 1) {
+      galleryLightboxIndex += 1;
+      updateGalleryLightboxImage();
+    }
+  }
+});
