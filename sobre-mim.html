@@ -190,44 +190,137 @@
 
     <main>
       <!-- Sobre mim / Hero -->
-      <section
-        class="relative flex min-h-[620px] items-center overflow-hidden bg-kaffee-cream bg-cover bg-center md:min-h-[720px]"
-        style="
-          background-image:
-            linear-gradient(
-              90deg,
-              rgba(244, 234, 222, 0.96) 0%,
-              rgba(244, 234, 222, 0.88) 28%,
-              rgba(244, 234, 222, 0.42) 48%,
-              rgba(244, 234, 222, 0.05) 72%
-            ),
-            url(&quot;./assets/sobre-mim-hero.png&quot;);
-          background-position: center right;
-        "
-      >
-        <div class="relative z-10 w-full px-6 md:px-10 lg:px-16 xl:px-20">
-          <div class="mx-auto max-w-[1320px]">
-            <div class="max-w-[520px]">
+      <section class="bg-kaffee-cream">
+        <!-- Até antes do LG: foto em cima, texto embaixo -->
+        <div class="lg:hidden">
+          <figure class="h-[430px] overflow-hidden">
+            <img
+              src="./assets/sobre-mim-hero.png"
+              alt="Agnes, criadora do Studio Kaffee"
+              class="h-full w-full object-cover object-center"
+            />
+          </figure>
 
-              <h1
-                class="font-logo text-[52px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[68px]"
-              >
-                Oi, eu sou a Agnes.
-              </h1>
+          <div class="px-6 py-14 md:px-10 md:py-16">
+            <p
+              class="mb-8 font-sans text-[11px] font-semibold uppercase tracking-[0.32em] text-kaffee-brown"
+            >
+              Sobre mim
+            </p>
 
-              <div
-                class="mt-10 space-y-7 font-sans text-[15px] leading-[2] text-kaffee-earth"
-              >
-                <p>
-                  Fotógrafa, maquiadora e StoryMaker apaixonada por criar
-                  experiências através da imagem e das histórias que cada pessoa
-                  carrega.
+            <h1
+              class="font-logo text-[52px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[64px]"
+            >
+              Oi, eu sou a Agnes.
+            </h1>
+
+            <div
+              class="mt-9 max-w-[620px] space-y-6 font-sans text-[15px] leading-[2] text-kaffee-earth"
+            >
+              <p>
+                Fotógrafa, maquiadora e StoryMaker apaixonada por criar
+                experiências através da imagem e das histórias que cada pessoa
+                carrega.
+              </p>
+
+              <p>
+                Acredito que fotografia vai muito além de cliques. É conexão, é
+                presença, é sobre revelar o que torna cada história única.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- LG até antes do 2XL: foto e texto lado a lado -->
+        <div
+          class="hidden bg-kaffee-cream px-12 py-16 lg:grid lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-12 xl:px-20 xl:gap-16 2xl:hidden"
+        >
+          <!-- Imagem -->
+          <figure class="h-[580px] overflow-hidden bg-kaffee-caramel/10">
+            <img
+              src="./assets/sobre-mim-hero.png"
+              alt="Agnes, criadora do Studio Kaffee"
+              class="h-full w-full object-cover object-center"
+            />
+          </figure>
+
+          <!-- Texto -->
+          <div>
+            <p
+              class="mb-8 font-sans text-[11px] font-semibold uppercase tracking-[0.32em] text-kaffee-brown"
+            >
+              Sobre mim
+            </p>
+
+            <h1
+              class="font-logo text-[58px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown xl:text-[64px]"
+            >
+              Oi, eu sou a Agnes.
+            </h1>
+
+            <div
+              class="mt-9 max-w-[560px] space-y-6 font-sans text-[15px] leading-[2] text-kaffee-earth"
+            >
+              <p>
+                Fotógrafa, maquiadora e StoryMaker apaixonada por criar
+                experiências através da imagem e das histórias que cada pessoa
+                carrega.
+              </p>
+
+              <p>
+                Acredito que fotografia vai muito além de cliques. É conexão, é
+                presença, é sobre revelar o que torna cada história única.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2XL pra cima: foto como background, texto sobreposto -->
+        <div
+          class="relative hidden min-h-[720px] items-center overflow-hidden bg-cover bg-center 2xl:flex"
+          style="
+            background-image:
+              linear-gradient(
+                90deg,
+                rgba(244, 234, 222, 0.96) 0%,
+                rgba(244, 234, 222, 0.88) 30%,
+                rgba(244, 234, 222, 0.5) 50%,
+                rgba(244, 234, 222, 0.08) 76%
+              ),
+              url(&quot;./assets/sobre-mim-hero.png&quot;);
+            background-position: center right;
+          "
+        >
+          <div class="relative z-10 w-full px-20">
+            <div class="mx-auto max-w-[1320px]">
+              <div class="max-w-[540px]">
+                <p
+                  class="mb-9 font-sans text-[11px] font-semibold uppercase tracking-[0.32em] text-kaffee-brown"
+                >
+                  Sobre mim
                 </p>
 
-                <p>
-                  Acredito que fotografia vai muito além de cliques. É conexão,
-                  é presença, é sobre revelar o que torna cada história única.
-                </p>
+                <h1
+                  class="font-logo text-[68px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown"
+                >
+                  Oi, eu sou a Agnes.
+                </h1>
+
+                <div
+                  class="mt-10 space-y-7 font-sans text-[15px] leading-[2] text-kaffee-earth"
+                >
+                  <p>
+                    Fotógrafa, maquiadora e StoryMaker apaixonada por criar
+                    experiências através da imagem e das histórias que cada
+                    pessoa carrega.
+                  </p>
+
+                  <p>
+                    Acredito que fotografia vai muito além de cliques. É
+                    conexão, é presença, é sobre revelar o que torna cada
+                    história única.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -350,7 +443,6 @@
       >
         Studio Kaffee • Santo André - SP
       </p>
-
     </footer>
 
     <script src="./script.js"></script>
