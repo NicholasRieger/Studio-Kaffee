@@ -29,9 +29,7 @@ function toggleMenu() {
   menuLines[2].classList.toggle("-rotate-45");
 }
 
-if (menuButton) {
-  menuButton.addEventListener("click", toggleMenu);
-}
+menuButton?.addEventListener("click", toggleMenu);
 
 mobileLinks.forEach((link) => {
   link.addEventListener("click", () => {
@@ -50,11 +48,12 @@ mobileLinks.forEach((link) => {
 const SHEET_CSV_URL =
   "https://docs.google.com/spreadsheets/d/1-1-uMWNpamh54A3_Z9FfA7HxUhkUASylsHkjWJxoNSE/gviz/tq?tqx=out:csv&gid=1115045835";
 
-const STUDIO_WHATSAPP_NUMBER = "5511987573010";
+const STUDIO_WHATSAPP_NUMBER = "5511978981727";
 
 const calendarTitle = document.querySelector("#calendarTitle");
 const calendarGrid = document.querySelector("#calendarGrid");
 const agendaList = document.querySelector("#agendaList");
+
 const prevMonthButton = document.querySelector("#prevMonth");
 const nextMonthButton = document.querySelector("#nextMonth");
 const todayButton = document.querySelector("#todayButton");
@@ -62,6 +61,7 @@ const todayButton = document.querySelector("#todayButton");
 const bookingModal = document.querySelector("#bookingModal");
 const bookingModalContent = document.querySelector("#bookingModalContent");
 const closeBookingModalButton = document.querySelector("#closeBookingModal");
+
 const bookingDateText = document.querySelector("#bookingDateText");
 const bookingStartTimeSelect = document.querySelector("#bookingStartTime");
 const bookingEndTimeSelect = document.querySelector("#bookingEndTime");
@@ -91,8 +91,17 @@ const DEFAULT_AVAILABLE_INTERVALS = [
   },
 ];
 
-let currentDate = new Date();
+// ===============================
+// Estado
+// ===============================
+
+// Sempre inicia no mês atual do dispositivo/navegador.
+const today = new Date();
+
+let currentDate = new Date(today.getFullYear(), today.getMonth(), 1);
+
 let agendaItems = [];
+
 let selectedBookingDate = null;
 let selectedBookingAvailability = null;
 
@@ -176,6 +185,7 @@ function parseDate(value) {
 
   if (/^\d{1,2}\/\d{1,2}\/\d{2}$/.test(text)) {
     const [day, month, shortYear] = text.split("/").map(Number);
+
     const year = shortYear < 50 ? 2000 + shortYear : 1900 + shortYear;
 
     return new Date(year, month - 1, day);
@@ -183,6 +193,7 @@ function parseDate(value) {
 
   if (/^\d+(\.\d+)?$/.test(text)) {
     const serial = Number(text);
+
     const excelEpoch = new Date(1899, 11, 30);
 
     return new Date(excelEpoch.getTime() + serial * 24 * 60 * 60 * 1000);
@@ -193,7 +204,9 @@ function parseDate(value) {
 
 function formatDateKey(date) {
   const year = date.getFullYear();
+
   const month = String(date.getMonth() + 1).padStart(2, "0");
+
   const day = String(date.getDate()).padStart(2, "0");
 
   return `${year}-${month}-${day}`;
@@ -219,9 +232,9 @@ function isStatus(status, statuses) {
 }
 
 function getTodayAtMidnight() {
-  const today = new Date();
+  const current = new Date();
 
-  return new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  return new Date(current.getFullYear(), current.getMonth(), current.getDate());
 }
 
 function isPastDate(date) {
@@ -242,7 +255,9 @@ function intervalsAreEqual(firstIntervals, secondIntervals) {
   const first = mergeIntervals(firstIntervals);
   const second = mergeIntervals(secondIntervals);
 
-  if (first.length !== second.length) return false;
+  if (first.length !== second.length) {
+    return false;
+  }
 
   return first.every((interval, index) => {
     return (
@@ -271,14 +286,19 @@ function parseIntervals(value) {
     /(\d{1,2})(?:h|:)?(\d{2})?\s*(?:-|–|—|a)\s*(\d{1,2})(?:h|:)?(\d{2})?/g;
 
   const intervals = [];
+
   let match;
 
   while ((match = regex.exec(text)) !== null) {
     const start = parseTimeToMinutes(match[1], match[2]);
+
     const end = parseTimeToMinutes(match[3], match[4]);
 
     if (start < end) {
-      intervals.push({ start, end });
+      intervals.push({
+        start,
+        end,
+      });
     }
   }
 
@@ -290,18 +310,23 @@ function mergeIntervals(intervals) {
     .filter((interval) => interval.start < interval.end)
     .sort((a, b) => a.start - b.start);
 
-  if (sortedIntervals.length === 0) return [];
+  if (sortedIntervals.length === 0) {
+    return [];
+  }
 
-  const merged = [sortedIntervals[0]];
+  const merged = [{ ...sortedIntervals[0] }];
 
   for (let i = 1; i < sortedIntervals.length; i++) {
     const current = sortedIntervals[i];
+
     const last = merged[merged.length - 1];
 
     if (current.start <= last.end) {
       last.end = Math.max(last.end, current.end);
     } else {
-      merged.push(current);
+      merged.push({
+        ...current,
+      });
     }
   }
 
@@ -314,10 +339,14 @@ function intersectIntervals(firstIntervals, secondIntervals) {
   mergeIntervals(firstIntervals).forEach((firstInterval) => {
     mergeIntervals(secondIntervals).forEach((secondInterval) => {
       const start = Math.max(firstInterval.start, secondInterval.start);
+
       const end = Math.min(firstInterval.end, secondInterval.end);
 
       if (start < end) {
-        intersections.push({ start, end });
+        intersections.push({
+          start,
+          end,
+        });
       }
     });
   });
@@ -338,12 +367,14 @@ function subtractIntervals(baseIntervals, busyIntervals) {
 
       if (doesNotOverlap) {
         updatedIntervals.push(availableInterval);
+
         return;
       }
 
       if (busyInterval.start > availableInterval.start) {
         updatedIntervals.push({
           start: availableInterval.start,
+
           end: Math.min(busyInterval.start, availableInterval.end),
         });
       }
@@ -351,6 +382,7 @@ function subtractIntervals(baseIntervals, busyIntervals) {
       if (busyInterval.end < availableInterval.end) {
         updatedIntervals.push({
           start: Math.max(busyInterval.end, availableInterval.start),
+
           end: availableInterval.end,
         });
       }
@@ -364,6 +396,7 @@ function subtractIntervals(baseIntervals, busyIntervals) {
 
 function formatMinutes(minutes) {
   const hour = Math.floor(minutes / 60);
+
   const minute = minutes % 60;
 
   if (minute === 0) {
@@ -374,7 +407,9 @@ function formatMinutes(minutes) {
 }
 
 function formatIntervals(intervals) {
-  if (!intervals.length) return "";
+  if (!intervals.length) {
+    return "";
+  }
 
   return intervals
     .map(
@@ -404,7 +439,9 @@ function getValidEndTimes(startTime, intervals, minimumDuration = 120) {
   const validEndTimes = [];
 
   intervals.forEach((interval) => {
-    if (startTime < interval.start || startTime >= interval.end) return;
+    if (startTime < interval.start || startTime >= interval.end) {
+      return;
+    }
 
     for (
       let endTime = startTime + minimumDuration;
@@ -447,7 +484,12 @@ function getAgendaByDate() {
   }, {});
 }
 
+// ===============================
+// Disponibilidade por dia
+// ===============================
+
 function getDayAvailability(date, entries = []) {
+  // Segunda-feira sempre indisponível.
   if (isMonday(date)) {
     return {
       status: "Indisponível",
@@ -459,6 +501,7 @@ function getDayAvailability(date, entries = []) {
     };
   }
 
+  // Dia completamente fechado.
   const closedEntry = entries.find((entry) =>
     isStatus(entry.status, ["Fechado", "Indisponível", "Indisponivel"]),
   );
@@ -466,22 +509,31 @@ function getDayAvailability(date, entries = []) {
   if (closedEntry) {
     return {
       status: closedEntry.status || "Fechado",
+
       horario: closedEntry.horario || closedEntry.status || "Fechado",
+
       observacao: closedEntry.observacao || "",
+
       busyText: "",
+
       isException: true,
+
       availableIntervals: [],
     };
   }
 
+  // Horários declarados como livres na planilha.
   const freeIntervalsFromSheet = entries
     .filter((entry) => isStatus(entry.status, ["Livre"]))
     .flatMap((entry) => parseIntervals(entry.horario));
 
+  // Horários ocupados na planilha.
   const busyIntervalsFromSheet = entries
     .filter((entry) => isStatus(entry.status, ["Ocupado"]))
     .flatMap((entry) => parseIntervals(entry.horario));
 
+  // Caso não exista intervalo livre específico,
+  // usa o funcionamento padrão 9h às 18h.
   const baseAvailableIntervals =
     freeIntervalsFromSheet.length > 0
       ? mergeIntervals(freeIntervalsFromSheet)
@@ -515,16 +567,21 @@ function getDayAvailability(date, entries = []) {
 
   return {
     status: "Livre",
+
     horario: formatIntervals(finalAvailableIntervals),
+
     observacao: "",
+
     busyText: "",
+
     isException: !isDefaultAvailability,
+
     availableIntervals: finalAvailableIntervals,
   };
 }
 
 // ===============================
-// Visual/status
+// Visual / status
 // ===============================
 
 function getStatusClasses(status) {
@@ -566,8 +623,10 @@ function updateEndTimeOptions() {
   }
 
   const startTime = Number(bookingStartTimeSelect.value);
+
   const availableIntervals =
     selectedBookingAvailability.availableIntervals || [];
+
   const endTimes = getValidEndTimes(startTime, availableIntervals);
 
   fillSelectWithTimes(bookingEndTimeSelect, endTimes);
@@ -605,6 +664,7 @@ function openBookingModal(dayItem) {
   }
 
   const availableIntervals = dayItem.availableIntervals || [];
+
   const startTimes = getAvailableTimePoints(availableIntervals).filter(
     (time) => {
       return getValidEndTimes(time, availableIntervals).length > 0;
@@ -612,11 +672,15 @@ function openBookingModal(dayItem) {
   );
 
   selectedBookingDate = dayItem.date;
+
   selectedBookingAvailability = dayItem;
 
   bookingDateText.textContent = formatFullDate(dayItem.date);
+
   bookingStartTimeSelect.innerHTML = "";
+
   bookingEndTimeSelect.innerHTML = "";
+
   bookingUseInput.value = "";
 
   if (startTimes.length === 0) {
@@ -639,7 +703,9 @@ function openBookingModal(dayItem) {
     );
 
     bookingStartTimeSelect.disabled = true;
+
     bookingEndTimeSelect.disabled = true;
+
     bookingWhatsAppButton.classList.add("pointer-events-none", "opacity-50");
 
     if (bookingTimeHint) {
@@ -650,7 +716,9 @@ function openBookingModal(dayItem) {
     fillSelectWithTimes(bookingStartTimeSelect, startTimes);
 
     bookingStartTimeSelect.disabled = false;
+
     bookingEndTimeSelect.disabled = false;
+
     bookingWhatsAppButton.classList.remove("pointer-events-none", "opacity-50");
 
     updateEndTimeOptions();
@@ -659,6 +727,7 @@ function openBookingModal(dayItem) {
   updateBookingWhatsAppLink();
 
   bookingModal.classList.remove("pointer-events-none", "opacity-0");
+
   bookingModalContent?.classList.remove("translate-y-4");
 
   document.body.classList.add("overflow-hidden");
@@ -668,6 +737,7 @@ function closeBookingModal() {
   if (!bookingModal) return;
 
   bookingModal.classList.add("pointer-events-none", "opacity-0");
+
   bookingModalContent?.classList.add("translate-y-4");
 
   document.body.classList.remove("overflow-hidden");
@@ -721,29 +791,37 @@ function validateBookingBeforeSend(event) {
 
   if (!bookingStartTimeSelect.value || !bookingEndTimeSelect.value) {
     event.preventDefault();
+
     alert("Selecione o horário inicial e final antes de enviar.");
+
     return;
   }
 
   if (!bookingUseInput.value.trim()) {
     event.preventDefault();
+
     alert("Informe qual será o uso do estúdio antes de enviar.");
   }
 }
 
 // ===============================
-// Renderização
+// Dias do mês
 // ===============================
 
 function getMonthDays(year, month) {
   const agendaByDate = getAgendaByDate();
+
   const totalDays = getDaysInMonth(year, month);
+
   const days = [];
 
   for (let day = 1; day <= totalDays; day++) {
     const date = new Date(year, month, day);
+
     const dateKey = formatDateKey(date);
+
     const entries = agendaByDate[dateKey] || [];
+
     const availability = getDayAvailability(date, entries);
 
     days.push({
@@ -758,17 +836,26 @@ function getMonthDays(year, month) {
   return days;
 }
 
+// ===============================
+// Calendário
+// ===============================
+
 function renderCalendar() {
-  if (!calendarTitle || !calendarGrid || !agendaList) return;
+  if (!calendarTitle || !calendarGrid || !agendaList) {
+    return;
+  }
 
   const year = currentDate.getFullYear();
+
   const month = currentDate.getMonth();
 
   calendarTitle.textContent = `${monthNames[month]} ${year}`;
 
   const firstDayOfMonth = new Date(year, month, 1);
+
   const firstWeekDay = firstDayOfMonth.getDay();
 
+  // Calendário começa na segunda.
   const mondayBasedStart = firstWeekDay === 0 ? 6 : firstWeekDay - 1;
 
   const monthDays = getMonthDays(year, month);
@@ -776,17 +863,21 @@ function renderCalendar() {
   calendarGrid.innerHTML = "";
   agendaList.innerHTML = "";
 
+  // Espaços antes do primeiro dia do mês.
   for (let i = 0; i < mondayBasedStart; i++) {
     calendarGrid.insertAdjacentHTML(
       "beforeend",
       `
-        <div class="min-h-[106px] border-r border-b border-kaffee-caramel/20 p-3 opacity-20"></div>
+        <div
+          class="min-h-[106px] border-r border-b border-kaffee-caramel/20 p-3 opacity-20"
+        ></div>
       `,
     );
   }
 
   monthDays.forEach((item) => {
     const classes = getStatusClasses(item.status);
+
     const isClickable =
       normalizeText(item.status) === "livre" && !isPastDate(item.date);
 
@@ -802,17 +893,24 @@ function renderCalendar() {
               : `${classes.cell} cursor-not-allowed opacity-70`
           }"
         >
-          <p class="font-semibold text-[18px]">${item.day}</p>
+          <p class="font-semibold text-[18px]">
+            ${item.day}
+          </p>
 
-          <p class="mt-3 text-[12px] leading-[1.45] ${classes.text}">
-            ${escapeHTML(item.status)}<br />
+          <p
+            class="mt-3 text-[12px] leading-[1.45] ${classes.text}"
+          >
+            ${escapeHTML(item.status)}
+            <br />
             ${escapeHTML(item.horario)}
           </p>
 
           ${
             item.observacao
               ? `
-                <p class="mt-2 line-clamp-2 text-[10px] leading-[1.4] text-kaffee-earth">
+                <p
+                  class="mt-2 line-clamp-2 text-[10px] leading-[1.4] text-kaffee-earth"
+                >
                   ${escapeHTML(item.observacao)}
                 </p>
               `
@@ -823,9 +921,11 @@ function renderCalendar() {
     );
   });
 
+  // Clique nos dias.
   calendarGrid.querySelectorAll("[data-booking-date]").forEach((button) => {
     button.addEventListener("click", () => {
       const dateKey = button.getAttribute("data-booking-date");
+
       const dayItem = monthDays.find((item) => item.dateKey === dateKey);
 
       if (dayItem) {
@@ -837,6 +937,10 @@ function renderCalendar() {
   renderMobileAgendaList(monthDays);
 }
 
+// ===============================
+// Agendamento mobile
+// ===============================
+
 function renderMobileAgendaList(monthDays) {
   const availableDays = monthDays.filter((item) => {
     return normalizeText(item.status) === "livre" && !isPastDate(item.date);
@@ -846,11 +950,15 @@ function renderMobileAgendaList(monthDays) {
     "beforeend",
     `
       <div class="bg-kaffee-caramel/10 px-4 py-5">
-        <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-kaffee-brown">
+        <p
+          class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-kaffee-brown"
+        >
           Solicitar reserva
         </p>
 
-        <p class="mt-2 font-sans text-[12px] leading-[1.7] text-kaffee-earth">
+        <p
+          class="mt-2 font-sans text-[12px] leading-[1.7] text-kaffee-earth"
+        >
           Consulte a disponibilidade no calendário acima e selecione um dia para escolher o horário.
         </p>
 
@@ -871,15 +979,16 @@ function renderMobileAgendaList(monthDays) {
                 ? availableDays
                     .map((item) => {
                       const day = String(item.date.getDate()).padStart(2, "0");
+
                       const monthNumber = String(
                         item.date.getMonth() + 1,
                       ).padStart(2, "0");
 
                       return `
-                        <option value="${item.dateKey}">
-                          ${day}/${monthNumber} — ${escapeHTML(item.horario)}
-                        </option>
-                      `;
+                          <option value="${item.dateKey}">
+                            ${day}/${monthNumber} — ${escapeHTML(item.horario)}
+                          </option>
+                        `;
                     })
                     .join("")
                 : `
@@ -905,6 +1014,7 @@ function renderMobileAgendaList(monthDays) {
   const mobileBookingDaySelect = document.querySelector(
     "#mobileBookingDaySelect",
   );
+
   const mobileBookingDayButton = document.querySelector(
     "#mobileBookingDayButton",
   );
@@ -915,6 +1025,7 @@ function renderMobileAgendaList(monthDays) {
 
   mobileBookingDayButton?.addEventListener("click", () => {
     const dateKey = mobileBookingDaySelect?.value;
+
     const dayItem = monthDays.find((item) => item.dateKey === dateKey);
 
     if (dayItem) {
@@ -923,6 +1034,10 @@ function renderMobileAgendaList(monthDays) {
   });
 }
 
+// ===============================
+// Erro da agenda
+// ===============================
+
 function showAgendaError(message = "Agenda indisponível") {
   if (calendarTitle) {
     calendarTitle.textContent = message;
@@ -930,15 +1045,21 @@ function showAgendaError(message = "Agenda indisponível") {
 
   if (calendarGrid) {
     calendarGrid.innerHTML = `
-      <div class="col-span-7 p-6 text-center font-sans text-[13px] text-kaffee-earth">
-        Não foi possível carregar a agenda. Verifique se a planilha está publicada ou compartilhada para visualização.
+      <div
+        class="col-span-7 p-6 text-center font-sans text-[13px] text-kaffee-earth"
+      >
+        Não foi possível carregar a agenda.
+        Verifique se a planilha está publicada
+        ou compartilhada para visualização.
       </div>
     `;
   }
 
   if (agendaList) {
     agendaList.innerHTML = `
-      <div class="px-5 py-6 text-center font-sans text-[13px] leading-[1.7] text-kaffee-earth">
+      <div
+        class="px-5 py-6 text-center font-sans text-[13px] leading-[1.7] text-kaffee-earth"
+      >
         Não foi possível carregar a agenda.
       </div>
     `;
@@ -950,17 +1071,22 @@ function showAgendaError(message = "Agenda indisponível") {
 // ===============================
 
 function loadAgendaFromSheet() {
-  if (!calendarTitle || !calendarGrid || !agendaList) return;
-
-  if (typeof Papa === "undefined") {
-    showAgendaError("PapaParse não carregou");
-    console.error(
-      "PapaParse não foi carregado. Adicione o CDN do PapaParse antes do script.js.",
-    );
+  if (!calendarTitle || !calendarGrid || !agendaList) {
     return;
   }
 
-  calendarTitle.textContent = "Carregando...";
+  if (typeof Papa === "undefined") {
+    showAgendaError("PapaParse não carregou");
+
+    console.error(
+      "PapaParse não foi carregado. Adicione o CDN do PapaParse antes do script.js.",
+    );
+
+    return;
+  }
+
+  // Renderiza imediatamente para não ficar travado em "Carregando...".
+  renderCalendar();
 
   Papa.parse(SHEET_CSV_URL, {
     download: true,
@@ -992,6 +1118,7 @@ function loadAgendaFromSheet() {
       agendaItems = result.data
         .map((row) => {
           const dateValue = getField(row, ["Data", "data"]);
+
           const date = parseDate(dateValue);
 
           const shouldShow = normalizeText(
@@ -1018,9 +1145,13 @@ function loadAgendaFromSheet() {
 
           return {
             date,
+
             dateKey: formatDateKey(date),
+
             dia: getField(row, ["Dia", "Dia da semana", "dia"]),
+
             status: getField(row, ["Status", "status"]) || "Livre",
+
             horario: getField(row, [
               "Horário exibido",
               "Horario exibido",
@@ -1028,6 +1159,7 @@ function loadAgendaFromSheet() {
               "Horario",
               "Hora",
             ]),
+
             observacao: getField(row, [
               "Observação pública",
               "Observacao publica",
@@ -1041,35 +1173,20 @@ function loadAgendaFromSheet() {
         .filter(Boolean)
         .sort((a, b) => a.date - b.date);
 
-      if (agendaItems.length > 0) {
-        const hasCurrentMonthItem = agendaItems.some((item) => {
-          return (
-            item.date.getFullYear() === currentDate.getFullYear() &&
-            item.date.getMonth() === currentDate.getMonth()
-          );
-        });
-
-        if (!hasCurrentMonthItem) {
-          currentDate = new Date(
-            agendaItems[0].date.getFullYear(),
-            agendaItems[0].date.getMonth(),
-            1,
-          );
-        }
-      }
-
+      // Atualiza novamente quando os dados reais chegam.
       renderCalendar();
     },
 
     error: function (error) {
       console.error("Erro ao carregar CSV:", error);
+
       showAgendaError();
     },
   });
 }
 
 // ===============================
-// Eventos
+// Navegação entre meses
 // ===============================
 
 prevMonthButton?.addEventListener("click", () => {
@@ -1093,9 +1210,16 @@ nextMonthButton?.addEventListener("click", () => {
 });
 
 todayButton?.addEventListener("click", () => {
-  currentDate = new Date();
+  const now = new Date();
+
+  currentDate = new Date(now.getFullYear(), now.getMonth(), 1);
+
   renderCalendar();
 });
+
+// ===============================
+// Eventos do modal de agendamento
+// ===============================
 
 closeBookingModalButton?.addEventListener("click", closeBookingModal);
 
@@ -1106,8 +1230,11 @@ bookingModal?.addEventListener("click", (event) => {
 });
 
 bookingStartTimeSelect?.addEventListener("change", updateEndTimeOptions);
+
 bookingEndTimeSelect?.addEventListener("change", updateBookingWhatsAppLink);
+
 bookingUseInput?.addEventListener("input", updateBookingWhatsAppLink);
+
 bookingWhatsAppButton?.addEventListener("click", validateBookingBeforeSend);
 
 document.addEventListener("keydown", (event) => {
@@ -1116,128 +1243,259 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+// ===============================
+// Inicialização da agenda
+// ===============================
+
 loadAgendaFromSheet();
 
+// ===============================
+// Carrossel do Studio
+// ===============================
+
+const galleryViewport = document.querySelector("#galleryViewport");
 const galleryTrack = document.querySelector("#galleryTrack");
 const galleryPrev = document.querySelector("#galleryPrev");
 const galleryNext = document.querySelector("#galleryNext");
 const galleryDots = document.querySelector("#galleryDots");
 
-let galleryIndex = 0;
+function getGallerySlides() {
+  if (!galleryTrack) return [];
 
-function getVisibleGallerySlides() {
-  if (window.innerWidth >= 1024) return 4;
-  if (window.innerWidth >= 768) return 2;
-  return 1;
+  return Array.from(galleryTrack.querySelectorAll(".gallery-slide"));
+}
+
+function getGalleryGap() {
+  if (!galleryTrack) return 0;
+
+  const styles = window.getComputedStyle(galleryTrack);
+
+  return parseFloat(styles.gap || styles.columnGap || "0");
 }
 
 function getGalleryStep() {
-  if (!galleryTrack) return 0;
+  const firstSlide = getGallerySlides()[0];
 
-  const firstSlide = galleryTrack.querySelector(".gallery-slide");
   if (!firstSlide) return 0;
 
-  const trackStyles = window.getComputedStyle(galleryTrack);
-  const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || 0);
+  return firstSlide.getBoundingClientRect().width + getGalleryGap();
+}
 
-  return firstSlide.offsetWidth + gap;
+function getGalleryMaxScroll() {
+  if (!galleryViewport) return 0;
+
+  return Math.max(galleryViewport.scrollWidth - galleryViewport.clientWidth, 0);
 }
 
 function getGalleryMaxIndex() {
-  if (!galleryTrack) return 0;
+  const step = getGalleryStep();
 
-  const slides = galleryTrack.querySelectorAll(".gallery-slide");
-  const visibleSlides = getVisibleGallerySlides();
+  if (step <= 0) return 0;
 
-  return Math.max(slides.length - visibleSlides, 0);
+  return Math.ceil(getGalleryMaxScroll() / step);
+}
+
+function getCurrentGalleryIndex() {
+  if (!galleryViewport) return 0;
+
+  const step = getGalleryStep();
+
+  if (step <= 0) return 0;
+
+  return Math.max(
+    0,
+    Math.min(
+      Math.round(galleryViewport.scrollLeft / step),
+      getGalleryMaxIndex(),
+    ),
+  );
 }
 
 function updateGalleryButtons() {
-  const maxIndex = getGalleryMaxIndex();
+  if (!galleryViewport) return;
+
+  const maxScroll = getGalleryMaxScroll();
+  const currentScroll = galleryViewport.scrollLeft;
 
   if (galleryPrev) {
-    galleryPrev.disabled = galleryIndex === 0;
+    galleryPrev.disabled = currentScroll <= 2;
   }
 
   if (galleryNext) {
-    galleryNext.disabled = galleryIndex === maxIndex;
+    galleryNext.disabled = currentScroll >= maxScroll - 2;
   }
 }
 
 function renderGalleryDots() {
-  if (!galleryDots || !galleryTrack) return;
+  if (!galleryDots || !galleryViewport) return;
 
   const maxIndex = getGalleryMaxIndex();
+  const currentIndex = getCurrentGalleryIndex();
 
   galleryDots.innerHTML = "";
 
-  for (let i = 0; i <= maxIndex; i++) {
-    galleryDots.insertAdjacentHTML(
-      "beforeend",
-      `
-        <button
-          type="button"
-          data-gallery-dot="${i}"
-          aria-label="Ir para imagem ${i + 1}"
-          class="h-2.5 w-2.5 cursor-pointer rounded-full transition ${
-            i === galleryIndex ? "bg-kaffee-brown" : "bg-kaffee-caramel/30"
-          }"
-        ></button>
-      `,
-    );
-  }
+  for (let index = 0; index <= maxIndex; index++) {
+    const dot = document.createElement("button");
 
-  galleryDots.querySelectorAll("[data-gallery-dot]").forEach((dot) => {
+    dot.type = "button";
+    dot.setAttribute("aria-label", `Ir para posição ${index + 1}`);
+
+    dot.className = `
+      h-2.5 w-2.5 cursor-pointer rounded-full transition
+      ${index === currentIndex ? "bg-kaffee-brown" : "bg-kaffee-caramel/30"}
+    `;
+
     dot.addEventListener("click", () => {
-      galleryIndex = Number(dot.getAttribute("data-gallery-dot"));
-      updateGalleryCarousel();
+      galleryViewport.scrollTo({
+        left: Math.min(index * getGalleryStep(), getGalleryMaxScroll()),
+        behavior: "smooth",
+      });
     });
-  });
+
+    galleryDots.appendChild(dot);
+  }
 }
 
-function updateGalleryCarousel() {
-  if (!galleryTrack) return;
-
-  const maxIndex = getGalleryMaxIndex();
-
-  if (galleryIndex < 0) {
-    galleryIndex = 0;
-  }
-
-  if (galleryIndex > maxIndex) {
-    galleryIndex = maxIndex;
-  }
-
-  const moveX = galleryIndex * getGalleryStep();
-
-  galleryTrack.style.transform = `translateX(-${moveX}px)`;
-
-  updateGalleryButtons();
-  renderGalleryDots();
-}
+// ===============================
+// Setas do carrossel
+// ===============================
 
 galleryNext?.addEventListener("click", () => {
-  const maxIndex = getGalleryMaxIndex();
-
-  if (galleryIndex < maxIndex) {
-    galleryIndex += 1;
-    updateGalleryCarousel();
-  }
+  galleryViewport?.scrollBy({
+    left: getGalleryStep(),
+    behavior: "smooth",
+  });
 });
 
 galleryPrev?.addEventListener("click", () => {
-  if (galleryIndex > 0) {
-    galleryIndex -= 1;
-    updateGalleryCarousel();
+  galleryViewport?.scrollBy({
+    left: -getGalleryStep(),
+    behavior: "smooth",
+  });
+});
+
+// ===============================
+// Atualização durante o scroll
+// ===============================
+
+let galleryScrollFrame = null;
+
+galleryViewport?.addEventListener(
+  "scroll",
+  () => {
+    if (galleryScrollFrame) return;
+
+    galleryScrollFrame = requestAnimationFrame(() => {
+      updateGalleryButtons();
+      renderGalleryDots();
+
+      galleryScrollFrame = null;
+    });
+  },
+  { passive: true },
+);
+
+// ===============================
+// Drag livre com mouse
+// ===============================
+
+let galleryMouseDragging = false;
+let galleryMouseStartX = 0;
+let galleryMouseStartScroll = 0;
+let galleryMouseMoved = false;
+
+let galleryPressedImageIndex = null;
+
+if (galleryViewport) {
+  galleryViewport.style.cursor = "grab";
+  galleryViewport.style.userSelect = "none";
+}
+
+getGallerySlides().forEach((image) => {
+  image.draggable = false;
+
+  image.addEventListener("dragstart", (event) => {
+    event.preventDefault();
+  });
+});
+
+galleryViewport?.addEventListener("pointerdown", (event) => {
+  // Touch continua usando o scroll nativo.
+  if (event.pointerType !== "mouse" || event.button !== 0) {
+    return;
+  }
+
+  galleryMouseDragging = true;
+  galleryMouseMoved = false;
+
+  galleryMouseStartX = event.clientX;
+  galleryMouseStartScroll = galleryViewport.scrollLeft;
+
+  /*
+   * Guarda qual imagem recebeu o clique.
+   * Assim conseguimos abrir o lightbox no pointerup,
+   * mesmo usando pointer capture.
+   */
+  const clickedImage = event.target.closest(".gallery-slide");
+
+  if (clickedImage) {
+    galleryPressedImageIndex = getGallerySlides().indexOf(clickedImage);
+  } else {
+    galleryPressedImageIndex = null;
+  }
+
+  galleryViewport.style.cursor = "grabbing";
+
+  galleryViewport.setPointerCapture(event.pointerId);
+});
+
+galleryViewport?.addEventListener("pointermove", (event) => {
+  if (!galleryMouseDragging) return;
+
+  const difference = event.clientX - galleryMouseStartX;
+
+  if (Math.abs(difference) > 5) {
+    galleryMouseMoved = true;
+  }
+
+  /*
+   * Arraste totalmente livre.
+   * Não existe snap nem centralização.
+   */
+  galleryViewport.scrollLeft = galleryMouseStartScroll - difference;
+});
+
+galleryViewport?.addEventListener("pointerup", () => {
+  if (!galleryMouseDragging) return;
+
+  galleryMouseDragging = false;
+
+  galleryViewport.style.cursor = "grab";
+
+  /*
+   * Se NÃO houve arraste e o clique
+   * começou em uma imagem, abre o lightbox.
+   */
+  if (
+    !galleryMouseMoved &&
+    galleryPressedImageIndex !== null &&
+    galleryPressedImageIndex >= 0
+  ) {
+    openGalleryLightbox(galleryPressedImageIndex);
+  }
+
+  galleryPressedImageIndex = null;
+});
+
+galleryViewport?.addEventListener("pointercancel", () => {
+  galleryMouseDragging = false;
+  galleryMouseMoved = false;
+  galleryPressedImageIndex = null;
+
+  if (galleryViewport) {
+    galleryViewport.style.cursor = "grab";
   }
 });
-
-window.addEventListener("resize", () => {
-  galleryIndex = 0;
-  updateGalleryCarousel();
-});
-
-updateGalleryCarousel();
 
 // ===============================
 // Lightbox da galeria
@@ -1246,44 +1504,67 @@ updateGalleryCarousel();
 const galleryLightbox = document.querySelector("#galleryLightbox");
 const galleryLightboxPanel = document.querySelector("#galleryLightboxPanel");
 const galleryLightboxImage = document.querySelector("#galleryLightboxImage");
-const closeGalleryLightboxButton = document.querySelector(
-  "#closeGalleryLightbox",
-);
 const galleryLightboxPrev = document.querySelector("#galleryLightboxPrev");
 const galleryLightboxNext = document.querySelector("#galleryLightboxNext");
 
+const closeGalleryLightboxButton = document.querySelector(
+  "#closeGalleryLightbox",
+);
+
 let galleryLightboxIndex = 0;
 
-function getGalleryImages() {
-  return Array.from(document.querySelectorAll(".gallery-slide"));
+let lightboxDragging = false;
+let lightboxStartX = 0;
+let lightboxCurrentX = 0;
+let lightboxAnimating = false;
+
+function isGalleryLightboxOpen() {
+  return Boolean(
+    galleryLightbox && !galleryLightbox.classList.contains("opacity-0"),
+  );
 }
 
-function updateGalleryLightboxImage() {
-  const images = getGalleryImages();
+function updateGalleryLightbox() {
+  const images = getGallerySlides();
+
   const currentImage = images[galleryLightboxIndex];
 
   if (!currentImage || !galleryLightboxImage) return;
 
   galleryLightboxImage.src = currentImage.src;
+
   galleryLightboxImage.alt =
     currentImage.alt || "Imagem ampliada do Studio Kaffee";
 
   if (galleryLightboxPrev) {
-    galleryLightboxPrev.disabled = galleryLightboxIndex === 0;
+    galleryLightboxPrev.disabled = galleryLightboxIndex <= 0;
   }
 
   if (galleryLightboxNext) {
-    galleryLightboxNext.disabled = galleryLightboxIndex === images.length - 1;
+    galleryLightboxNext.disabled = galleryLightboxIndex >= images.length - 1;
   }
 }
+
+// ===============================
+// Abrir / fechar lightbox
+// ===============================
 
 function openGalleryLightbox(index) {
   if (!galleryLightbox || !galleryLightboxImage) return;
 
   galleryLightboxIndex = index;
-  updateGalleryLightboxImage();
+
+  lightboxDragging = false;
+  lightboxAnimating = false;
+
+  galleryLightboxImage.style.transition = "";
+  galleryLightboxImage.style.transform = "";
+  galleryLightboxImage.style.opacity = "";
+
+  updateGalleryLightbox();
 
   galleryLightbox.classList.remove("pointer-events-none", "opacity-0");
+
   galleryLightboxImage.classList.remove("scale-95");
 
   document.body.classList.add("overflow-hidden");
@@ -1292,44 +1573,263 @@ function openGalleryLightbox(index) {
 function closeGalleryLightbox() {
   if (!galleryLightbox || !galleryLightboxImage) return;
 
+  lightboxDragging = false;
+  lightboxAnimating = false;
+
   galleryLightbox.classList.add("pointer-events-none", "opacity-0");
+
   galleryLightboxImage.classList.add("scale-95");
 
-  document.body.classList.remove("overflow-hidden");
+  galleryLightboxImage.style.transition = "";
+  galleryLightboxImage.style.transform = "";
+  galleryLightboxImage.style.opacity = "";
 
-  setTimeout(() => {
-    galleryLightboxImage.src = "";
-  }, 300);
+  document.body.classList.remove("overflow-hidden");
 }
 
-getGalleryImages().forEach((image, index) => {
-  image.addEventListener("click", () => {
-    openGalleryLightbox(index);
-  });
+// ===============================
+// Toque nas imagens - tablet/mobile
+// ===============================
+
+let galleryTouchStartX = 0;
+let galleryTouchStartY = 0;
+
+getGallerySlides().forEach((image, index) => {
+  image.addEventListener(
+    "touchstart",
+    (event) => {
+      const touch = event.touches[0];
+
+      if (!touch) return;
+
+      galleryTouchStartX = touch.clientX;
+      galleryTouchStartY = touch.clientY;
+    },
+    {
+      passive: true,
+    },
+  );
+
+  image.addEventListener(
+    "touchend",
+    (event) => {
+      const touch = event.changedTouches[0];
+
+      if (!touch) return;
+
+      const differenceX = Math.abs(touch.clientX - galleryTouchStartX);
+
+      const differenceY = Math.abs(touch.clientY - galleryTouchStartY);
+
+      /*
+       * Se o dedo praticamente não se moveu,
+       * consideramos um toque.
+       *
+       * Se moveu bastante na horizontal,
+       * foi swipe do carrossel e NÃO abre.
+       */
+      if (differenceX < 12 && differenceY < 12) {
+        openGalleryLightbox(index);
+      }
+    },
+    {
+      passive: true,
+    },
+  );
 });
+
+// ===============================
+// Retornar imagem ampliada ao centro
+// ===============================
+
+function resetLightboxPosition() {
+  if (!galleryLightboxImage) return;
+
+  galleryLightboxImage.style.transition =
+    "transform 260ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease";
+
+  galleryLightboxImage.style.transform = "translate3d(0, 0, 0) scale(1)";
+
+  galleryLightboxImage.style.opacity = "1";
+
+  window.setTimeout(() => {
+    if (!galleryLightboxImage || lightboxAnimating) return;
+
+    galleryLightboxImage.style.transition = "";
+    galleryLightboxImage.style.transform = "";
+    galleryLightboxImage.style.opacity = "";
+  }, 280);
+}
+
+// ===============================
+// Troca animada de imagem
+// ===============================
+
+function animateLightboxChange(direction) {
+  if (!galleryLightboxImage || lightboxAnimating) return;
+
+  const images = getGallerySlides();
+
+  const nextIndex = galleryLightboxIndex + direction;
+
+  if (nextIndex < 0 || nextIndex >= images.length) {
+    resetLightboxPosition();
+
+    return;
+  }
+
+  lightboxAnimating = true;
+  lightboxDragging = false;
+
+  const exitPosition = direction > 0 ? "-28%" : "28%";
+  const enterPosition = direction > 0 ? "24%" : "-24%";
+
+  galleryLightboxImage.style.transition =
+    "transform 180ms ease, opacity 160ms ease";
+
+  galleryLightboxImage.style.transform = `translate3d(${exitPosition}, 0, 0) scale(0.99)`;
+
+  galleryLightboxImage.style.opacity = "0";
+
+  window.setTimeout(() => {
+    galleryLightboxIndex = nextIndex;
+
+    updateGalleryLightbox();
+
+    galleryLightboxImage.style.transition = "none";
+
+    galleryLightboxImage.style.transform = `translate3d(${enterPosition}, 0, 0) scale(0.99)`;
+
+    galleryLightboxImage.style.opacity = "0";
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        galleryLightboxImage.style.transition =
+          "transform 260ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease";
+
+        galleryLightboxImage.style.transform = "translate3d(0, 0, 0) scale(1)";
+
+        galleryLightboxImage.style.opacity = "1";
+      });
+    });
+
+    window.setTimeout(() => {
+      galleryLightboxImage.style.transition = "";
+      galleryLightboxImage.style.transform = "";
+      galleryLightboxImage.style.opacity = "";
+
+      lightboxAnimating = false;
+    }, 280);
+  }, 170);
+}
+
+// ===============================
+// Swipe / drag no lightbox
+// ===============================
+
+if (galleryLightboxImage) {
+  galleryLightboxImage.draggable = false;
+
+  galleryLightboxImage.style.touchAction = "pan-y";
+
+  galleryLightboxImage.style.userSelect = "none";
+}
+
+galleryLightboxImage?.addEventListener("pointerdown", (event) => {
+  if (lightboxAnimating) return;
+
+  if (event.pointerType === "mouse" && event.button !== 0) {
+    return;
+  }
+
+  lightboxDragging = true;
+
+  lightboxStartX = event.clientX;
+  lightboxCurrentX = event.clientX;
+
+  galleryLightboxImage.setPointerCapture(event.pointerId);
+
+  galleryLightboxImage.style.transition = "none";
+});
+
+galleryLightboxImage?.addEventListener("pointermove", (event) => {
+  if (!lightboxDragging || lightboxAnimating) return;
+
+  lightboxCurrentX = event.clientX;
+
+  const difference = lightboxCurrentX - lightboxStartX;
+
+  // Resistência progressiva.
+  const maxVisualDrag = 170;
+
+  const resistedMovement =
+    maxVisualDrag * Math.tanh(difference / maxVisualDrag);
+
+  const progress = Math.min(Math.abs(resistedMovement) / maxVisualDrag, 1);
+
+  const scale = 1 - progress * 0.012;
+
+  const opacity = 1 - progress * 0.08;
+
+  galleryLightboxImage.style.transform = `translate3d(${resistedMovement}px, 0, 0) scale(${scale})`;
+
+  galleryLightboxImage.style.opacity = String(opacity);
+});
+
+function finishLightboxDrag() {
+  if (!lightboxDragging || lightboxAnimating) return;
+
+  lightboxDragging = false;
+
+  const difference = lightboxCurrentX - lightboxStartX;
+
+  const imageWidth = galleryLightboxImage?.getBoundingClientRect().width || 600;
+
+  // Não troca com uma puxadinha pequena.
+  const threshold = Math.min(150, Math.max(90, imageWidth * 0.18));
+
+  if (difference <= -threshold) {
+    animateLightboxChange(1);
+
+    return;
+  }
+
+  if (difference >= threshold) {
+    animateLightboxChange(-1);
+
+    return;
+  }
+
+  resetLightboxPosition();
+}
+
+galleryLightboxImage?.addEventListener("pointerup", finishLightboxDrag);
+
+galleryLightboxImage?.addEventListener("pointercancel", finishLightboxDrag);
+
+// ===============================
+// Setas do lightbox
+// ===============================
 
 galleryLightboxPrev?.addEventListener("click", (event) => {
   event.stopPropagation();
 
-  if (galleryLightboxIndex > 0) {
-    galleryLightboxIndex -= 1;
-    updateGalleryLightboxImage();
-  }
+  animateLightboxChange(-1);
 });
 
 galleryLightboxNext?.addEventListener("click", (event) => {
   event.stopPropagation();
 
-  const images = getGalleryImages();
-
-  if (galleryLightboxIndex < images.length - 1) {
-    galleryLightboxIndex += 1;
-    updateGalleryLightboxImage();
-  }
+  animateLightboxChange(1);
 });
+
+// ===============================
+// Fechar lightbox
+// ===============================
 
 closeGalleryLightboxButton?.addEventListener("click", (event) => {
   event.stopPropagation();
+
   closeGalleryLightbox();
 });
 
@@ -1339,26 +1839,50 @@ galleryLightboxPanel?.addEventListener("click", (event) => {
 
 galleryLightbox?.addEventListener("click", closeGalleryLightbox);
 
+// ===============================
+// Teclado do lightbox
+// ===============================
+
 document.addEventListener("keydown", (event) => {
-  if (!galleryLightbox || galleryLightbox.classList.contains("opacity-0")) {
-    return;
-  }
+  if (!isGalleryLightboxOpen()) return;
 
   if (event.key === "Escape") {
     closeGalleryLightbox();
+
+    return;
   }
 
-  if (event.key === "ArrowLeft" && galleryLightboxIndex > 0) {
-    galleryLightboxIndex -= 1;
-    updateGalleryLightboxImage();
+  if (event.key === "ArrowLeft") {
+    animateLightboxChange(-1);
   }
 
   if (event.key === "ArrowRight") {
-    const images = getGalleryImages();
-
-    if (galleryLightboxIndex < images.length - 1) {
-      galleryLightboxIndex += 1;
-      updateGalleryLightboxImage();
-    }
+    animateLightboxChange(1);
   }
 });
+
+// ===============================
+// Resize
+// ===============================
+
+let galleryResizeTimer;
+
+window.addEventListener("resize", () => {
+  if (!galleryViewport) return;
+
+  window.clearTimeout(galleryResizeTimer);
+
+  galleryResizeTimer = window.setTimeout(() => {
+    updateGalleryButtons();
+    renderGalleryDots();
+  }, 100);
+});
+
+// ===============================
+// Inicialização da galeria
+// ===============================
+
+if (galleryViewport && galleryTrack) {
+  updateGalleryButtons();
+  renderGalleryDots();
+}

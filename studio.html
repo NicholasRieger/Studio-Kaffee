@@ -381,18 +381,18 @@
               id="galleryPrev"
               type="button"
               aria-label="Imagem anterior"
-              class="absolute left-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-kaffee-cream text-kaffee-brown shadow-md transition hover:bg-kaffee-brown hover:text-kaffee-cream disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-kaffee-cream disabled:hover:text-kaffee-brown md:-left-5"
+              class="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-kaffee-cream/95 text-kaffee-brown shadow-md transition hover:bg-kaffee-brown hover:text-kaffee-cream disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-kaffee-cream disabled:hover:text-kaffee-brown md:left-3 xl:-left-5"
             >
               <i class="fa-solid fa-chevron-left text-[13px]"></i>
             </button>
 
             <!-- Área visível -->
-            <div class="overflow-hidden px-8">
+            <div
+              id="galleryViewport"
+              class="overflow-x-auto overflow-y-hidden px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
               <!-- Faixa do carrossel -->
-              <div
-                id="galleryTrack"
-                class="flex flex-nowrap gap-4 transition-transform duration-500 ease-in-out"
-              >
+              <div id="galleryTrack" class="flex flex-nowrap gap-4">
                 <img
                   src="./assets/imagens/studio/galeria-estudio-01.jpg"
                   alt="Ambiente do Studio Kaffee"
@@ -436,7 +436,7 @@
               id="galleryNext"
               type="button"
               aria-label="Próxima imagem"
-              class="absolute right-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-kaffee-cream text-kaffee-brown shadow-md transition hover:bg-kaffee-brown hover:text-kaffee-cream disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-kaffee-cream disabled:hover:text-kaffee-brown md:-right-5"
+              class="absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-kaffee-cream/95 text-kaffee-brown shadow-md transition hover:bg-kaffee-brown hover:text-kaffee-cream disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-kaffee-cream disabled:hover:text-kaffee-brown md:right-3 xl:-right-5"
             >
               <i class="fa-solid fa-chevron-right text-[13px]"></i>
             </button>
@@ -515,7 +515,7 @@
         class="mt-7 font-sans text-[11px] font-medium uppercase tracking-[0.08em] text-kaffee-brown"
       >
         Studio Kaffee • Santo André - SP
-    </p>
+      </p>
     </footer>
     <!-- Modal / Lightbox da galeria -->
     <div
@@ -524,7 +524,7 @@
     >
       <div
         id="galleryLightboxPanel"
-        class="relative flex w-full max-w-[920px] items-center justify-center"
+        class="relative flex w-[92vw] max-w-[920px] items-center justify-center md:w-[86vw]"
       >
         <!-- Fechar -->
         <button
@@ -541,7 +541,7 @@
           id="galleryLightboxPrev"
           type="button"
           aria-label="Imagem anterior"
-          class="absolute left-3 top-1/2 z-[1000] flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-kaffee-cream text-kaffee-brown shadow-md transition hover:bg-kaffee-brown hover:text-kaffee-cream disabled:cursor-not-allowed disabled:opacity-30 md:-left-16"
+          class="absolute left-2 top-1/2 z-[1000] flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-kaffee-cream text-kaffee-brown shadow-md transition hover:bg-kaffee-brown hover:text-kaffee-cream disabled:cursor-not-allowed disabled:opacity-30 md:left-3 md:h-11 md:w-11 xl:-left-16"
         >
           <i class="fa-solid fa-chevron-left text-[13px]"></i>
         </button>
@@ -551,7 +551,8 @@
           id="galleryLightboxImage"
           src=""
           alt="Imagem ampliada do Studio Kaffee"
-          class="max-h-[74vh] max-w-full scale-95 object-contain shadow-2xl transition duration-300"
+          draggable="false"
+          class="max-h-[68vh] max-w-[82vw] cursor-grab select-none object-contain shadow-2xl transition duration-300 active:cursor-grabbing md:max-h-[72vh] md:max-w-[76vw] xl:max-h-[78vh] xl:max-w-full"
         />
 
         <!-- Seta próxima -->
@@ -559,7 +560,7 @@
           id="galleryLightboxNext"
           type="button"
           aria-label="Próxima imagem"
-          class="absolute right-3 top-1/2 z-[1000] flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-kaffee-cream text-kaffee-brown shadow-md transition hover:bg-kaffee-brown hover:text-kaffee-cream disabled:cursor-not-allowed disabled:opacity-30 md:-right-16"
+          class="absolute right-2 top-1/2 z-[1000] flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-kaffee-cream text-kaffee-brown shadow-md transition hover:bg-kaffee-brown hover:text-kaffee-cream disabled:cursor-not-allowed disabled:opacity-30 md:right-3 md:h-11 md:w-11 xl:-right-16"
         >
           <i class="fa-solid fa-chevron-right text-[13px]"></i>
         </button>
