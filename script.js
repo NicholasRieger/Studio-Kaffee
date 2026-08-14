@@ -86,7 +86,7 @@ const monthNames = [
 
 const DEFAULT_AVAILABLE_INTERVALS = [
   {
-    start: 9 * 60,
+    start: 10 * 60,
     end: 18 * 60,
   },
 ];
