@@ -807,6 +807,12 @@
   .object-cover {
     object-fit: cover;
   }
+  .object-\[center_65\%\] {
+    object-position: center 65%;
+  }
+  .object-bottom {
+    object-position: bottom;
+  }
   .object-center {
     object-position: center;
   }
