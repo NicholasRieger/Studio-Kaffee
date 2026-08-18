@@ -1048,6 +1048,10 @@
     --tw-tracking: -0.06em;
     letter-spacing: -0.06em;
   }
+  .tracking-\[0\.02em\] {
+    --tw-tracking: 0.02em;
+    letter-spacing: 0.02em;
+  }
   .tracking-\[0\.2em\] {
     --tw-tracking: 0.2em;
     letter-spacing: 0.2em;
