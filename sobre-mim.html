@@ -190,55 +190,16 @@
 
     <main>
       <!-- Sobre mim / Hero -->
-      <section class="bg-kaffee-cream">
-        <!-- Até antes do LG: foto em cima, texto embaixo -->
-        <div class="lg:hidden">
-          <figure class="h-[430px] overflow-hidden">
-            <img
-              src="./assets/imagens/sobre-mim/sobre-mim-hero.jpg"
-              alt="Agnes, criadora do Studio Kaffee"
-              class="h-full w-full object-cover object-center"
-            />
-          </figure>
-
-          <div class="px-6 py-14 md:px-10 md:py-16">
-            <p
-              class="mb-8 font-sans text-[11px] font-semibold uppercase tracking-[0.32em] text-kaffee-brown"
-            >
-              Sobre mim
-            </p>
-
-            <h1
-              class="font-logo text-[52px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[64px]"
-            >
-              Oi, eu sou a Agnes.
-            </h1>
-
-            <div
-              class="mt-9 max-w-[620px] space-y-6 font-sans text-[15px] leading-[2] text-kaffee-earth"
-            >
-              <p>
-                Sou <strong>Fotógrafa, Maquiadora e StoryMaker</strong>,
-                apaixonada por imagens, café e principalmente, pelas
-                experiências e histórias que existem por trás de cada pessoa!
-              </p>
-
-              <p>
-                Sempre acreditei que criar uma imagem é também criar um momento.
-                Gosto de pensar nos detalhes, nas sensações e naquilo que faz
-                cada experiência ser única e foi desse olhar que o
-                <strong>Studio Kaffee</strong> começou a nascer.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- LG até antes do 2XL: foto e texto lado a lado -->
+      <section
+        class="bg-kaffee-cream px-6 py-12 md:px-10 md:py-16 lg:px-16 lg:py-20 xl:px-20"
+      >
         <div
-          class="hidden bg-kaffee-cream px-12 py-16 lg:grid lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-12 xl:px-20 xl:gap-16 2xl:hidden"
+          class="mx-auto grid max-w-[1320px] items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12 xl:gap-16"
         >
           <!-- Imagem -->
-          <figure class="h-[580px] overflow-hidden bg-kaffee-caramel/10">
+          <figure
+            class="h-[430px] overflow-hidden bg-kaffee-caramel/10 md:h-[500px] lg:h-[520px] xl:h-[560px]"
+          >
             <img
               src="./assets/imagens/sobre-mim/sobre-mim-hero.jpg"
               alt="Agnes, criadora do Studio Kaffee"
@@ -248,85 +209,34 @@
 
           <!-- Texto -->
           <div>
-            <p
-              class="mb-8 font-sans text-[11px] font-semibold uppercase tracking-[0.32em] text-kaffee-brown"
-            >
-              Sobre mim
-            </p>
-
-            <h1
-              class="font-logo text-[58px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown xl:text-[64px]"
-            >
-              Oi, eu sou a Agnes.
-            </h1>
-
-            <div
-              class="mt-9 max-w-[560px] space-y-6 font-sans text-[15px] leading-[2] text-kaffee-earth"
-            >
-              <p>
-                Sou <strong>Fotógrafa, Maquiadora e StoryMaker</strong>,
-                apaixonada por imagens, café e principalmente, pelas
-                experiências e histórias que existem por trás de cada pessoa!
+            <div class="max-w-[620px]">
+              <p
+                class="mb-8 font-sans text-[11px] font-semibold uppercase tracking-[0.32em] text-kaffee-brown"
+              >
+                Sobre mim
               </p>
 
-              <p>
-                Sempre acreditei que criar uma imagem é também criar um momento.
-                Gosto de pensar nos detalhes, nas sensações e naquilo que faz
-                cada experiência ser única e foi desse olhar que o
-                <strong>Studio Kaffee</strong> começou a nascer.
-              </p>
-            </div>
-          </div>
-        </div>
+              <h1
+                class="font-logo text-[52px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown md:text-[64px] lg:text-[58px] xl:text-[64px]"
+              >
+                Oi, eu sou a Agnes.
+              </h1>
 
-        <!-- 2XL pra cima: foto como background, texto sobreposto -->
-        <div
-          class="relative hidden min-h-[720px] items-center overflow-hidden bg-cover bg-center 2xl:flex"
-          style="
-            background-image:
-              linear-gradient(
-                90deg,
-                rgba(244, 234, 222, 0.96) 0%,
-                rgba(244, 234, 222, 0.88) 30%,
-                rgba(244, 234, 222, 0.5) 50%,
-                rgba(244, 234, 222, 0.08) 76%
-              ),
-              url(&quot;./assets/imagens/sobre-mim/sobre-mim-hero.jpg&quot;);
-            background-position: center right;
-          "
-        >
-          <div class="relative z-10 w-full px-20">
-            <div class="mx-auto max-w-[1320px]">
-              <div class="max-w-[540px]">
-                <p
-                  class="mb-9 font-sans text-[11px] font-semibold uppercase tracking-[0.32em] text-kaffee-brown"
-                >
-                  Sobre mim
+              <div
+                class="mt-9 space-y-6 font-sans text-[15px] leading-[2] text-kaffee-earth"
+              >
+                <p>
+                  Sou <strong>Fotógrafa, Maquiadora e StoryMaker</strong>,
+                  apaixonada por imagens, café e, principalmente, pelas
+                  experiências e histórias que existem por trás de cada pessoa!
                 </p>
 
-                <h1
-                  class="font-logo text-[68px] font-normal leading-[1.05] tracking-[-0.04em] text-kaffee-brown"
-                >
-                  Oi, eu sou a Agnes.
-                </h1>
-
-                <div
-                  class="mt-10 space-y-7 font-sans text-[15px] leading-[2] text-kaffee-earth"
-                >
-                  <p>
-                    Sou <strong>Fotógrafa, Maquiadora e StoryMaker</strong>,
-                    apaixonada por imagens, café e, principalmente, pelas
-                    experiências e histórias que existem por trás de cada
-                    pessoa.
-                  </p>
-
-                  <p>
-                    Sempre acreditei que criar uma imagem é também criar um
-                    momento. Gosto de pensar nos detalhes, nas sensações e
-                    naquilo que faz cada experiência ser única e foi desse olhar
-                    que o <strong>Studio Kaffee</strong> começou a nascer
-                  </p>
-                </div>
+                <p>
+                  Sempre acreditei que criar uma imagem é também criar um
+                  momento. Gosto de pensar nos detalhes, nas sensações e naquilo
+                  que faz cada experiência ser única e foi desse olhar que o
+                  <strong>Studio Kaffee</strong> começou a nascer.
+                </p>
               </div>
             </div>
           </div>
