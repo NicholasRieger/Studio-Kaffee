@@ -351,6 +351,9 @@
   .h-\[260px\] {
     height: 260px;
   }
+  .h-\[280px\] {
+    height: 280px;
+  }
   .h-\[360px\] {
     height: 360px;
   }
@@ -360,8 +363,32 @@
   .h-\[430px\] {
     height: 430px;
   }
+  .h-\[500px\] {
+    height: 500px;
+  }
+  .h-\[520px\] {
+    height: 520px;
+  }
   .h-\[580px\] {
     height: 580px;
+  }
+  .h-\[720px\] {
+    height: 720px;
+  }
+  .h-\[820px\] {
+    height: 820px;
+  }
+  .h-\[920px\] {
+    height: 920px;
+  }
+  .h-\[940px\] {
+    height: 940px;
+  }
+  .h-\[1300px\] {
+    height: 1300px;
+  }
+  .h-\[px\] {
+    height: px;
   }
   .h-full {
     height: 100%;
@@ -371,6 +398,9 @@
   }
   .max-h-\[68vh\] {
     max-height: 68vh;
+  }
+  .max-h-\[200px\] {
+    max-height: 200px;
   }
   .max-h-\[320px\] {
     max-height: 320px;
@@ -441,8 +471,17 @@
   .max-w-180 {
     max-width: calc(var(--spacing) * 180);
   }
+  .max-w-\[10px\] {
+    max-width: 10px;
+  }
   .max-w-\[82vw\] {
     max-width: 82vw;
+  }
+  .max-w-\[150px\] {
+    max-width: 150px;
+  }
+  .max-w-\[200px\] {
+    max-width: 200px;
   }
   .max-w-\[220px\] {
     max-width: 220px;
@@ -455,6 +494,9 @@
   }
   .max-w-\[430px\] {
     max-width: 430px;
+  }
+  .max-w-\[500px\] {
+    max-width: 500px;
   }
   .max-w-\[520px\] {
     max-width: 520px;
@@ -486,14 +528,23 @@
   .max-w-\[980px\] {
     max-width: 980px;
   }
+  .max-w-\[1000px\] {
+    max-width: 1000px;
+  }
   .max-w-\[1040px\] {
     max-width: 1040px;
   }
   .max-w-\[1180px\] {
     max-width: 1180px;
   }
+  .max-w-\[1200px\] {
+    max-width: 1200px;
+  }
   .max-w-\[1320px\] {
     max-width: 1320px;
+  }
+  .max-w-\[5200px\] {
+    max-width: 5200px;
   }
   .flex-shrink {
     flex-shrink: 1;
@@ -1417,6 +1468,9 @@
     .md\:h-\[320px\] {
       height: 320px;
     }
+    .md\:h-\[420px\] {
+      height: 420px;
+    }
     .md\:h-\[460px\] {
       height: 460px;
     }
@@ -1591,6 +1645,18 @@
     }
     .lg\:hidden {
       display: none;
+    }
+    .lg\:h-\[800px\] {
+      height: 800px;
+    }
+    .lg\:h-\[850px\] {
+      height: 850px;
+    }
+    .lg\:h-\[875px\] {
+      height: 875px;
+    }
+    .lg\:h-full {
+      height: 100%;
     }
     .lg\:grid-cols-\[0\.9fr_1\.1fr\] {
       grid-template-columns: 0.9fr 1.1fr;
