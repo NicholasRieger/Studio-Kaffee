@@ -105,6 +105,10 @@ let agendaItems = [];
 let selectedBookingDate = null;
 let selectedBookingAvailability = null;
 
+// A agenda permite visualizar somente:
+// mês atual + os 3 meses seguintes.
+const CALENDAR_FUTURE_MONTHS = 3;
+
 // ===============================
 // Helpers
 // ===============================
@@ -223,6 +227,73 @@ function formatFullDate(date) {
 
 function getDaysInMonth(year, month) {
   return new Date(year, month + 1, 0).getDate();
+}
+
+function getCurrentMonthStart() {
+  const now = new Date();
+
+  return new Date(now.getFullYear(), now.getMonth(), 1);
+}
+
+function getLastAllowedMonth() {
+  const currentMonth = getCurrentMonthStart();
+
+  return new Date(
+    currentMonth.getFullYear(),
+    currentMonth.getMonth() + CALENDAR_FUTURE_MONTHS,
+    1,
+  );
+}
+
+function getMonthTimestamp(date) {
+  return new Date(date.getFullYear(), date.getMonth(), 1).getTime();
+}
+
+function clampCurrentDateToAllowedRange() {
+  const firstAllowedMonth = getCurrentMonthStart();
+  const lastAllowedMonth = getLastAllowedMonth();
+
+  const currentTimestamp = getMonthTimestamp(currentDate);
+  const firstTimestamp = getMonthTimestamp(firstAllowedMonth);
+  const lastTimestamp = getMonthTimestamp(lastAllowedMonth);
+
+  if (currentTimestamp < firstTimestamp) {
+    currentDate = firstAllowedMonth;
+
+    return;
+  }
+
+  if (currentTimestamp > lastTimestamp) {
+    currentDate = lastAllowedMonth;
+  }
+}
+
+function updateMonthNavigationButtons() {
+  const firstAllowedMonth = getCurrentMonthStart();
+  const lastAllowedMonth = getLastAllowedMonth();
+
+  const currentTimestamp = getMonthTimestamp(currentDate);
+
+  const isAtFirstMonth =
+    currentTimestamp <= getMonthTimestamp(firstAllowedMonth);
+
+  const isAtLastMonth = currentTimestamp >= getMonthTimestamp(lastAllowedMonth);
+
+  if (prevMonthButton) {
+    prevMonthButton.disabled = isAtFirstMonth;
+
+    prevMonthButton.classList.toggle("opacity-40", isAtFirstMonth);
+    prevMonthButton.classList.toggle("cursor-not-allowed", isAtFirstMonth);
+    prevMonthButton.classList.toggle("cursor-pointer", !isAtFirstMonth);
+  }
+
+  if (nextMonthButton) {
+    nextMonthButton.disabled = isAtLastMonth;
+
+    nextMonthButton.classList.toggle("opacity-40", isAtLastMonth);
+    nextMonthButton.classList.toggle("cursor-not-allowed", isAtLastMonth);
+    nextMonthButton.classList.toggle("cursor-pointer", !isAtLastMonth);
+  }
 }
 
 function isStatus(status, statuses) {
@@ -845,6 +916,13 @@ function renderCalendar() {
     return;
   }
 
+  // Se o mês real mudou enquanto a página estava aberta,
+  // impede que o calendário permaneça em um mês já passado
+  // ou avance além dos dois meses futuros permitidos.
+  clampCurrentDateToAllowedRange();
+
+  updateMonthNavigationButtons();
+
   const year = currentDate.getFullYear();
 
   const month = currentDate.getMonth();
@@ -1190,6 +1268,12 @@ function loadAgendaFromSheet() {
 // ===============================
 
 prevMonthButton?.addEventListener("click", () => {
+  const firstAllowedMonth = getCurrentMonthStart();
+
+  if (getMonthTimestamp(currentDate) <= getMonthTimestamp(firstAllowedMonth)) {
+    return;
+  }
+
   currentDate = new Date(
     currentDate.getFullYear(),
     currentDate.getMonth() - 1,
@@ -1200,6 +1284,12 @@ prevMonthButton?.addEventListener("click", () => {
 });
 
 nextMonthButton?.addEventListener("click", () => {
+  const lastAllowedMonth = getLastAllowedMonth();
+
+  if (getMonthTimestamp(currentDate) >= getMonthTimestamp(lastAllowedMonth)) {
+    return;
+  }
+
   currentDate = new Date(
     currentDate.getFullYear(),
     currentDate.getMonth() + 1,
@@ -1210,9 +1300,7 @@ nextMonthButton?.addEventListener("click", () => {
 });
 
 todayButton?.addEventListener("click", () => {
-  const now = new Date();
-
-  currentDate = new Date(now.getFullYear(), now.getMonth(), 1);
+  currentDate = getCurrentMonthStart();
 
   renderCalendar();
 });
