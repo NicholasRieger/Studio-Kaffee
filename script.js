@@ -105,9 +105,9 @@ let agendaItems = [];
 let selectedBookingDate = null;
 let selectedBookingAvailability = null;
 
-// A agenda permite visualizar somente:
-// mês atual + os 3 meses seguintes.
-const CALENDAR_FUTURE_MONTHS = 3;
+// A agenda exibe somente 3 meses no total:
+// mês atual + os 2 meses seguintes.
+const CALENDAR_FUTURE_MONTHS = 2;
 
 // ===============================
 // Helpers
@@ -259,7 +259,6 @@ function clampCurrentDateToAllowedRange() {
 
   if (currentTimestamp < firstTimestamp) {
     currentDate = firstAllowedMonth;
-
     return;
   }
 
@@ -271,7 +270,6 @@ function clampCurrentDateToAllowedRange() {
 function updateMonthNavigationButtons() {
   const firstAllowedMonth = getCurrentMonthStart();
   const lastAllowedMonth = getLastAllowedMonth();
-
   const currentTimestamp = getMonthTimestamp(currentDate);
 
   const isAtFirstMonth =
@@ -281,7 +279,6 @@ function updateMonthNavigationButtons() {
 
   if (prevMonthButton) {
     prevMonthButton.disabled = isAtFirstMonth;
-
     prevMonthButton.classList.toggle("opacity-40", isAtFirstMonth);
     prevMonthButton.classList.toggle("cursor-not-allowed", isAtFirstMonth);
     prevMonthButton.classList.toggle("cursor-pointer", !isAtFirstMonth);
@@ -289,7 +286,6 @@ function updateMonthNavigationButtons() {
 
   if (nextMonthButton) {
     nextMonthButton.disabled = isAtLastMonth;
-
     nextMonthButton.classList.toggle("opacity-40", isAtLastMonth);
     nextMonthButton.classList.toggle("cursor-not-allowed", isAtLastMonth);
     nextMonthButton.classList.toggle("cursor-pointer", !isAtLastMonth);
@@ -604,7 +600,7 @@ function getDayAvailability(date, entries = []) {
     .flatMap((entry) => parseIntervals(entry.horario));
 
   // Caso não exista intervalo livre específico,
-  // usa o funcionamento padrão 9h às 18h.
+  // usa o funcionamento padrão 10h às 18h.
   const baseAvailableIntervals =
     freeIntervalsFromSheet.length > 0
       ? mergeIntervals(freeIntervalsFromSheet)
@@ -916,21 +912,17 @@ function renderCalendar() {
     return;
   }
 
-  // Se o mês real mudou enquanto a página estava aberta,
-  // impede que o calendário permaneça em um mês já passado
-  // ou avance além dos dois meses futuros permitidos.
+  // Mantém a navegação sempre dentro da janela permitida:
+  // mês atual + os 2 meses seguintes.
   clampCurrentDateToAllowedRange();
-
   updateMonthNavigationButtons();
 
   const year = currentDate.getFullYear();
-
   const month = currentDate.getMonth();
 
   calendarTitle.textContent = `${monthNames[month]} ${year}`;
 
   const firstDayOfMonth = new Date(year, month, 1);
-
   const firstWeekDay = firstDayOfMonth.getDay();
 
   // Calendário começa na segunda.
@@ -947,7 +939,7 @@ function renderCalendar() {
       "beforeend",
       `
         <div
-          class="min-h-[106px] border-r border-b border-kaffee-caramel/20 p-3 opacity-20"
+          class="min-h-[78px] border-r border-b border-kaffee-caramel/20 opacity-20 md:min-h-[106px]"
         ></div>
       `,
     );
@@ -959,35 +951,48 @@ function renderCalendar() {
     const isClickable =
       normalizeText(item.status) === "livre" && !isPastDate(item.date);
 
+    // Evita repetir textos iguais, por exemplo:
+    // "Indisponível / Indisponível" e "Fechado / Fechado".
+    const shouldShowHorario =
+      normalizeText(item.horario) !== normalizeText(item.status);
+
     calendarGrid.insertAdjacentHTML(
       "beforeend",
       `
         <button
           type="button"
           data-booking-date="${item.dateKey}"
-          class="min-h-[106px] border-r border-b border-kaffee-caramel/20 p-3 text-left transition ${
+          class="min-w-0 min-h-[78px] overflow-hidden border-r border-b border-kaffee-caramel/20 px-1 py-2 text-left transition md:min-h-[106px] md:p-3 ${
             isClickable
               ? `${classes.cell} cursor-pointer hover:bg-kaffee-caramel/20`
               : `${classes.cell} cursor-not-allowed opacity-70`
           }"
         >
-          <p class="font-semibold text-[18px]">
+          <p class="font-semibold text-[12px] leading-none md:text-[18px]">
             ${item.day}
           </p>
 
           <p
-            class="mt-3 text-[12px] leading-[1.45] ${classes.text}"
+            class="mt-2 max-w-full break-words text-[8px] leading-[1.25] ${classes.text} min-[400px]:text-[9px] md:mt-3 md:text-[12px] md:leading-[1.45]"
           >
             ${escapeHTML(item.status)}
-            <br />
-            ${escapeHTML(item.horario)}
+
+            ${
+              shouldShowHorario
+                ? `
+                  <span class="mt-0.5 block">
+                    ${escapeHTML(item.horario)}
+                  </span>
+                `
+                : ""
+            }
           </p>
 
           ${
             item.observacao
               ? `
                 <p
-                  class="mt-2 line-clamp-2 text-[10px] leading-[1.4] text-kaffee-earth"
+                  class="mt-1 hidden break-words text-[10px] leading-[1.4] text-kaffee-earth md:line-clamp-2 md:block"
                 >
                   ${escapeHTML(item.observacao)}
                 </p>
