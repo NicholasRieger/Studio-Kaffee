@@ -951,30 +951,61 @@ function renderCalendar() {
     const isClickable =
       normalizeText(item.status) === "livre" && !isPastDate(item.date);
 
-    // Evita repetir textos iguais, por exemplo:
-    // "Indisponível / Indisponível" e "Fechado / Fechado".
     const shouldShowHorario =
       normalizeText(item.horario) !== normalizeText(item.status);
+
+    const normalizedStatus = normalizeText(item.status);
+
+    let mobileStatus = item.status;
+
+    if (normalizedStatus === "indisponivel") {
+      mobileStatus = "Indisp.";
+    }
+
+    let mobileHorario = item.horario;
+
+    if (normalizeText(item.horario) === "sem horarios disponiveis") {
+      mobileHorario = "Sem horários";
+    }
 
     calendarGrid.insertAdjacentHTML(
       "beforeend",
       `
-        <button
-          type="button"
-          data-booking-date="${item.dateKey}"
-          class="min-w-0 min-h-[78px] overflow-hidden border-r border-b border-kaffee-caramel/20 px-1 py-2 text-left transition md:min-h-[106px] md:p-3 ${
-            isClickable
-              ? `${classes.cell} cursor-pointer hover:bg-kaffee-caramel/20`
-              : `${classes.cell} cursor-not-allowed opacity-70`
-          }"
-        >
-          <p class="font-semibold text-[12px] leading-none md:text-[18px]">
-            ${item.day}
-          </p>
+      <button
+        type="button"
+        data-booking-date="${item.dateKey}"
+        class="min-w-0 min-h-[78px] overflow-hidden border-r border-b border-kaffee-caramel/20 px-1 py-2 text-left transition md:min-h-[106px] md:p-3 ${
+          isClickable
+            ? `${classes.cell} cursor-pointer hover:bg-kaffee-caramel/20`
+            : `${classes.cell} cursor-not-allowed opacity-70`
+        }"
+      >
+        <!-- Número do dia -->
+        <p class="font-semibold text-[12px] leading-none md:text-[18px]">
+          ${item.day}
+        </p>
 
-          <p
-            class="mt-2 max-w-full break-words text-[8px] leading-[1.25] ${classes.text} min-[400px]:text-[9px] md:mt-3 md:text-[12px] md:leading-[1.45]"
-          >
+        <!-- Status -->
+        <p
+          class="mt-2 max-w-full text-[9px] leading-[1.25] ${classes.text} md:mt-3 md:text-[12px] md:leading-[1.45]"
+        >
+          <!-- Mobile -->
+          <span class="md:hidden">
+            ${escapeHTML(mobileStatus)}
+
+            ${
+              shouldShowHorario
+                ? `
+                  <span class="mt-0.5 block">
+                    ${escapeHTML(mobileHorario)}
+                  </span>
+                `
+                : ""
+            }
+          </span>
+
+          <!-- Tablet / Desktop -->
+          <span class="hidden md:block">
             ${escapeHTML(item.status)}
 
             ${
@@ -986,21 +1017,22 @@ function renderCalendar() {
                 `
                 : ""
             }
-          </p>
+          </span>
+        </p>
 
-          ${
-            item.observacao
-              ? `
-                <p
-                  class="mt-1 hidden break-words text-[10px] leading-[1.4] text-kaffee-earth md:line-clamp-2 md:block"
-                >
-                  ${escapeHTML(item.observacao)}
-                </p>
-              `
-              : ""
-          }
-        </button>
-      `,
+        ${
+          item.observacao
+            ? `
+              <p
+                class="mt-1 hidden break-words text-[10px] leading-[1.4] text-kaffee-earth md:line-clamp-2 md:block"
+              >
+                ${escapeHTML(item.observacao)}
+              </p>
+            `
+            : ""
+        }
+      </button>
+    `,
     );
   });
 
