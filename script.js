@@ -561,7 +561,7 @@ function getDayAvailability(date, entries = []) {
     return {
       status: "Indisponível",
       horario: "Indisponível",
-      observacao: "Estúdio indisponível às segundas-feiras",
+      observacao: "Studio indisponível às segundas-feiras",
       busyText: "",
       isException: true,
       availableIntervals: [],
@@ -841,7 +841,7 @@ Olá! Gostaria de solicitar uma reserva no Studio Kaffee.
 
 Dia: ${formatFullDate(selectedBookingDate)}
 Horário: ${selectedTime}
-Uso do estúdio: ${studioUse || "Ainda não informado"}
+Uso do Studio: ${studioUse || "Ainda não informado"}
 `.trim();
 
   const whatsappUrl = `https://wa.me/${STUDIO_WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -867,7 +867,7 @@ function validateBookingBeforeSend(event) {
   if (!bookingUseInput.value.trim()) {
     event.preventDefault();
 
-    alert("Informe qual será o uso do estúdio antes de enviar.");
+    alert("Informe qual será o uso do Studio antes de enviar.");
   }
 }
 
